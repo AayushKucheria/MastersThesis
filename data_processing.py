@@ -47,7 +47,6 @@ def process_conversation(data: Dict) -> List[ProcessedTurn]:
         }
 
         # Extract grammar rules (removing escaped quotes)
-        print("Calling the parse grammar rules fuction")
         grammar_rules = parse_grammar_rules(data['grammarRules'])
         
         # Process conversation turns
@@ -79,19 +78,13 @@ def parse_grammar_rules(grammar_string: str) -> List[str]:
     Parse grammar rules from string format into list of rules.
     Returns only the rules, not the explanations.
     """
-    print("\nDEBUG: Starting grammar rule parsing")
-    print(f"Original string: {grammar_string[:100]}...")
     
     # Extract just the grammar rules part (everything up to ']]')
     grammar_part = grammar_string[:grammar_string.find(']]') + 2]
-    print(f"Grammar part only: {grammar_part[:100]}...")
     
     try:
-        print("Attempting ast.literal_eval...")
         rules_list = ast.literal_eval(grammar_part)
-        print(f"Rules list after eval: {rules_list}")
         rules = [pair[0] for pair in rules_list]
-        print(f"Final rules: {rules}")
         return rules
     except (ValueError, SyntaxError) as e:
         print(f"Error parsing grammar rules: {e}")
