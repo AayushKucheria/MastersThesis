@@ -8,14 +8,14 @@ import matplotlib.pyplot as plt
 
 from statsmodels.stats import inter_rater as irr
 
-from data_processing import ProcessedTurn
+from data_processing import ProcessedConversation
 
 @dataclass
 class ActionAnalysis:
     def __init__(self):
         self.action_types = ['question', 'hint', 'correction', 'confirmation']
         
-    def compute_action_distributions(self, responses: List[ProcessedTurn]) -> Dict:
+    def compute_action_distributions(self, responses: List[ProcessedConversation]) -> Dict:
         """Compute distribution of tutor actions across all responses"""
         action_counts = {action: 0 for action in self.action_types}
         total = 0
@@ -29,7 +29,7 @@ class ActionAnalysis:
         
         return {k: v/total for k, v in action_counts.items()}
 
-    def compute_conditional_distributions(self, responses: List[ProcessedTurn]) -> Dict:
+    def compute_conditional_distributions(self, responses: List[ProcessedConversation]) -> Dict:
         """Compute tutor action distributions conditioned on student action"""
         student_actions = ['guess', 'question', 'affirmation']
         conditional_dist = {}
@@ -52,7 +52,7 @@ class ActionAnalysis:
             
         return conditional_dist
 
-    def compute_agreement_metrics(self, responses: List[ProcessedTurn]) -> Dict:
+    def compute_agreement_metrics(self, responses: List[ProcessedConversation]) -> Dict:
         """Compute comprehensive agreement metrics between tutors"""
         # Overall agreement rate
         agreement_count = 0
@@ -109,8 +109,8 @@ class ActionAnalysis:
         plt.tight_layout()
         plt.show()
 
-    def statistical_comparison(self, human_responses: List[ProcessedTurn], 
-                             llm_responses: List[ProcessedTurn]) -> Dict:
+    def statistical_comparison(self, human_responses: List[ProcessedConversation], 
+                             llm_responses: List[ProcessedConversation]) -> Dict:
         """Run statistical tests comparing human and LLM distributions"""
         human_dist = self.compute_action_distributions(human_responses)
         llm_dist = self.compute_action_distributions(llm_responses)
