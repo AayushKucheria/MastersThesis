@@ -2,8 +2,11 @@
 from action_distribution_analysis import ActionAnalysis
 from data_processing import process_conversation
 import json
+from dotenv import load_dotenv
+import os
 
 from analysis import analyze_conditional_action_distribution, analyze_tutor_action_distribution
+from llm_responses import LLMTutor
 
 def load_dataset():
     """Load and return the CIMA dataset"""
@@ -17,7 +20,7 @@ def process_all_conversations(data):
     for conv_id in list(data['prepDataset'].keys()):
         conversation = process_conversation(data['prepDataset'][conv_id])
         processed_conversations.append(conversation)
-        break
+        
     return processed_conversations
 
 def analyze_distributions(processed_conversations):
@@ -32,7 +35,30 @@ def analyze_distributions(processed_conversations):
     return action_distribution, conditional_distribution
 
 def generate_ai_responses(processed_conversations):
-    return
+    """Generate AI responses for each conversation using LLMTutor"""
+    # Initialize LLMTutor with your API key
+    # Load environment variables
+    load_dotenv()
+    # Get API key from environment
+    api_key = os.getenv('API_KEY')
+    if not api_key:
+        raise ValueError("API_KEY not found in environment variables")
+        
+    api_key = 
+    llm_tutor = LLMTutor(api_key)
+    
+    # Model to use for generation
+    model_name = "google/gemini-2.0-flash-exp:free"  # or your preferred model
+    # model_name = "openai/gpt-4o-2024-08-06"
+    
+    # Generate responses for each conversation
+    for conversation in processed_conversations[:10]:
+        llm_response = llm_tutor.generate_response(conversation, model_name)
+        print(f"\nConversation: {conversation.context['conversation_history']}")
+        print(f"\nAI Response: {llm_response.response}")
+        print(f"Actions: {llm_response.actions}")
+    
+    return processed_conversations
 
 def print_conversation_details(conversations):
         """Pretty print details of processed conversations"""
@@ -69,13 +95,15 @@ def print_conversation_details(conversations):
             
             print("\n" + "=" * 50)
 
+            
+
 def run_analysis():
     """Main function to run the full analysis"""
     data = load_dataset()
     processed_conversations = process_all_conversations(data)
-    print_conversation_details(processed_conversations[:2])
 
-    # processed_conversations = generate_ai_responses(processed_conversations)
+    processed_conversations = generate_ai_responses(processed_conversations)
+    # print_conversation_details(processed_conversations[:10])
     # action_dist, cond_dist = analyze_distributions(processed_conversations)
 
 if __name__ == "__main__":
