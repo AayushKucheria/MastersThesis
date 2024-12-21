@@ -34,29 +34,45 @@ def analyze_distributions(processed_conversations):
     conditional_distribution = analyze_conditional_action_distribution(processed_conversations)
     return action_distribution, conditional_distribution
 
-def generate_ai_responses(processed_conversations):
+def generate_ai_responses(processed_conversations, model_name):
     """Generate AI responses for each conversation using LLMTutor"""
-    # Initialize LLMTutor with your API key
-    # Load environment variables
+
+    # Load existing AI responses if available
+    ai_responses_file = f'{model_name}_responses.json'
+    existing_responses = {}
+    if os.path.exists(ai_responses_file):
+        with open(ai_responses_file, 'r') as f:
+            existing_responses = json.load(f)
+
     load_dotenv()
-    # Get API key from environment
     api_key = os.getenv('API_KEY')
     if not api_key:
         raise ValueError("API_KEY not found in environment variables")
         
-    api_key = 
     llm_tutor = LLMTutor(api_key)
     
-    # Model to use for generation
-    model_name = "google/gemini-2.0-flash-exp:free"  # or your preferred model
-    # model_name = "openai/gpt-4o-2024-08-06"
     
+    new_responses = {}
     # Generate responses for each conversation
-    for conversation in processed_conversations[:10]:
+    for i, conversation in enumerate(processed_conversations):
+
+        if i in existing_responses:
+            print(f"Skipping conversation {i} - already processed")
+            continue
+
         llm_response = llm_tutor.generate_response(conversation, model_name)
-        print(f"\nConversation: {conversation.context['conversation_history']}")
-        print(f"\nAI Response: {llm_response.response}")
-        print(f"Actions: {llm_response.actions}")
+        new_responses[i] = {
+            'response': llm_response.response,
+            'actions': llm_response.actions
+        }
+
+         # Save after each generation to prevent loss
+        all_responses = {**existing_responses, **new_responses}
+        os.makedirs(os.path.dirname(ai_responses_file), exist_ok=True)
+        with open(ai_responses_file, 'w') as f:
+            json.dump(all_responses, f, indent=2)
+            
+        print(f"Processed conversation {i}")
     
     return processed_conversations
 
@@ -95,14 +111,16 @@ def print_conversation_details(conversations):
             
             print("\n" + "=" * 50)
 
-            
-
+        
 def run_analysis():
     """Main function to run the full analysis"""
     data = load_dataset()
     processed_conversations = process_all_conversations(data)
 
-    processed_conversations = generate_ai_responses(processed_conversations)
+    # model_name = "google/gemini-pro-1.5"
+    # model_name = "openai/gpt-4o-2024-08-06"
+    model_name = "meta-llama/llama-3.1-405b-instruct:nitro"
+    processed_conversations = generate_ai_responses(processed_conversations, model_name)
     # print_conversation_details(processed_conversations[:10])
     # action_dist, cond_dist = analyze_distributions(processed_conversations)
 
