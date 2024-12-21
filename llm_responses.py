@@ -59,12 +59,12 @@ class LLMTutor:
             }
         )
 
-        print(response)
+        # print(response)
         
         # Parse JSON response
         try:
             response_content = json.loads(response.choices[0].message.content)
-            print("Parsed response:", response_content)
+            # print("Parsed response:", response_content)
             return LLMResponse(
                 response=response_content["response"],
                 actions=response_content["actions"],
