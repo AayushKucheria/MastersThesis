@@ -39,6 +39,7 @@ class LLMTutor:
                     "strict": True,
                     "schema": {
                         "type": "object",
+                        "additionalProperties": False, # need this for openai, remove for others
                         "properties": {
                             "response": {
                                 "type": "string",
