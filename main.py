@@ -118,8 +118,8 @@ def run_analysis():
     processed_conversations = process_all_conversations(data)
 
     # model_name = "google/gemini-pro-1.5"
-    # model_name = "openai/gpt-4o-2024-08-06"
-    model_name = "meta-llama/llama-3.1-405b-instruct:nitro"
+    model_name = "openai/gpt-4o-2024-08-06"
+    # model_name = "meta-llama/llama-3.1-405b-instruct:nitro"
     processed_conversations = generate_ai_responses(processed_conversations, model_name)
     # print_conversation_details(processed_conversations[:10])
     # action_dist, cond_dist = analyze_distributions(processed_conversations)
