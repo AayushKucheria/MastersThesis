@@ -10,7 +10,7 @@ from llm_responses import LLMTutor
 
 def load_dataset():
     """Load and return the CIMA dataset"""
-    with open('cima_dataset.json', 'r') as f:
+    with open('data/cima_dataset.json', 'r') as f:
         data = json.load(f)
     return data
 
