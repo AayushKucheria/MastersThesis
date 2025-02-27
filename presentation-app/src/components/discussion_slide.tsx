@@ -75,9 +75,8 @@ const DiscussionSlideTemplate = ({ currentSubsection = 'theoretical', updateCurr
                 {/* Visual quote with border styling */}
                 <div className="bg-teal-50 p-4 rounded-lg border-l-4 border-teal-600 mb-4">
                   <p className="text-gray-800 italic">
-                    &quot;Despite surface-level fluidity of interactions, fixed behavioral patterns emerge in LLMs that differ systematically from human tutoring approaches.&quot;
+                    Despite surface-level fluidity of interactions, fixed behavioral patterns emerge in LLMs that differ systematically from human tutoring approaches
                   </p>
-                  <p className="text-xs text-right mt-1 text-teal-700">— Thesis p.87</p>
                 </div>
                 
                 <div className="space-y-3">
@@ -171,9 +170,8 @@ const DiscussionSlideTemplate = ({ currentSubsection = 'theoretical', updateCurr
             <div className="mb-6">
               <div className="bg-teal-50 p-4 rounded-lg border-l-4 border-teal-600">
                 <p className="text-gray-800 italic">
-                  &quot;The distinctive patterns found in LLM tutoring suggest a need for intentional design choices that strategically leverage their unique capabilities.&quot;
+                  The distinctive patterns found in LLM tutoring suggest a need for intentional design choices that strategically leverage their unique capabilities
                 </p>
-                <p className="text-xs text-right mt-1 text-teal-700">— Thesis p.92</p>
               </div>
             </div>
             

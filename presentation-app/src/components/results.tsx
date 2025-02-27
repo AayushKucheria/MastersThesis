@@ -211,7 +211,7 @@ const ResultsSlideTemplate = ({ currentSubsection = 'distribution', updateCurren
                       </li>
                       <li className="flex items-start">
                         <span className="text-purple-600 mr-2 mt-1">•</span>
-                        <span className="text-gray-700">LLaMA shows strongest preference for dual-actions (>80%)</span>
+                        <span className="text-gray-700">LLaMA shows strongest preference for dual-actions ({'>'}80%)</span>
                       </li>
                       <li className="flex items-start">
                         <span className="text-purple-600 mr-2 mt-1">•</span>

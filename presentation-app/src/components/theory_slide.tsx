@@ -249,7 +249,7 @@ const TheorySlideTemplate = ({ currentSubsection = 'evolution', updateCurrentSub
               <div>
                 <p className="text-gray-800 font-medium">Key research question:</p>
                 <p className="text-gray-800">Which constraints in LLM tutoring reflect deliberate pedagogical choices versus those that are artifacts of their technical architecture?</p>
-                <p className="text-sm text-gray-600 italic mt-1">&quot;Understanding this distinction is crucial for evaluating LLM-based tutoring systems&quot; — Thesis p.17</p>
+                <p className="text-sm text-gray-600 italic mt-1">Understanding this distinction is crucial for evaluating LLM-based tutoring systems</p>
               </div>
             </div>
           </div>
