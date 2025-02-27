@@ -1,6 +1,20 @@
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
+import { 
+  Book, 
+  Lightbulb, 
+  ArrowRight, 
+  Brain, 
+  Rocket, 
+  LayoutGrid, 
+  Code, 
+  Sparkles,
+  Puzzle,
+  BarChart,
+  AlertTriangle,
+  ArrowUpRight
+} from 'lucide-react';
 
 // Define the props interface for the component
 interface DiscussionSlideProps {
@@ -43,7 +57,6 @@ const DiscussionSlideTemplate = ({ currentSubsection = 'theoretical', updateCurr
     }
   };
   
-  // This is a placeholder - your actual slides would be defined here
   const slides = [
     {
       title: "Theoretical Implications",
@@ -55,65 +68,92 @@ const DiscussionSlideTemplate = ({ currentSubsection = 'theoretical', updateCurr
           </div>
           
           <div className="p-6">
+            {/* Interactive Concept Map Design */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h3 className="text-xl font-semibold mb-4 text-teal-800">Fluid Interfaces vs. Fixed Patterns</h3>
-                <div className="bg-teal-50 p-4 rounded-lg mb-4">
-                  <p className="text-gray-800">
-                    Our findings reveal a fundamental tension: despite the surface-level fluidity of LLM interactions, fixed behavioral patterns emerge that are distinct from human tutoring approaches.
-                  </p>
+                <div className="flex items-center mb-3">
+                  <Puzzle className="h-6 w-6 text-teal-600 mr-2" />
+                  <h3 className="text-xl font-semibold text-teal-800">Key Tensions</h3>
                 </div>
                 
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start">
-                    <span className="text-teal-600 mr-2 font-bold">•</span>
-                    <span><span className="font-medium">QWERTY phenomenon in action</span>: New technical constraints emerge from training methods rather than intentional design</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-teal-600 mr-2 font-bold">•</span>
-                    <span><span className="font-medium">Statistical vs. cognitive scaffolding</span>: LLMs&apos; patterns reflect statistical regularities rather than pedagogical theory</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-teal-600 mr-2 font-bold">•</span>
-                    <span><span className="font-medium">Emergent interaction styles</span>: Different models develop distinctive patterns despite similar training objectives</span>
-                  </li>
-                </ul>
+                {/* Visual quote with border styling */}
+                <div className="bg-teal-50 p-4 rounded-lg border-l-4 border-teal-600 mb-4">
+                  <p className="text-gray-800 italic">
+                    "Despite surface-level fluidity of interactions, fixed behavioral patterns emerge in LLMs that differ systematically from human tutoring approaches."
+                  </p>
+                  <p className="text-xs text-right mt-1 text-teal-700">— Thesis p.87</p>
+                </div>
+                
+                <div className="space-y-3">
+                  {/* Visual concept cards with icons */}
+                  <div className="bg-white border border-teal-200 rounded-lg p-3 shadow-sm flex items-start">
+                    <div className="bg-teal-100 p-2 rounded-full mr-3 flex-shrink-0">
+                      <Lightbulb className="h-5 w-5 text-teal-700" />
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-teal-800">QWERTY Phenomenon</h4>
+                      <p className="text-sm text-gray-600">New constraints emerge from training rather than design</p>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-white border border-teal-200 rounded-lg p-3 shadow-sm flex items-start">
+                    <div className="bg-teal-100 p-2 rounded-full mr-3 flex-shrink-0">
+                      <Brain className="h-5 w-5 text-teal-700" />
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-teal-800">Statistical vs. Cognitive</h4>
+                      <p className="text-sm text-gray-600">LLMs reflect statistical patterns over pedagogical theory</p>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-white border border-teal-200 rounded-lg p-3 shadow-sm flex items-start">
+                    <div className="bg-teal-100 p-2 rounded-full mr-3 flex-shrink-0">
+                      <Sparkles className="h-5 w-5 text-teal-700" />
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-teal-800">Emergent Styles</h4>
+                      <p className="text-sm text-gray-600">Different models develop distinct patterns</p>
+                    </div>
+                  </div>
+                </div>
               </div>
               
               <div>
-                <h3 className="text-xl font-semibold mb-4 text-teal-800">Implications for Learning Theory</h3>
-                <div className="space-y-4">
-                  <div className="bg-gray-50 p-3 rounded-lg">
-                    <div className="font-medium text-teal-700">Constructivist Learning</div>
-                    <p className="text-sm mt-1">
-                      The tendency toward complex responses suggests LLMs may prioritize information delivery over the incremental knowledge construction that constructivist theory emphasizes.
-                    </p>
-                  </div>
-                  
-                  <div className="bg-gray-50 p-3 rounded-lg">
-                    <div className="font-medium text-teal-700">Zone of Proximal Development</div>
-                    <p className="text-sm mt-1">
-                      Human tutors&apos; preference for simpler interactions may better align with Vygotsky&apos;s ZPD theory, which suggests learning is optimized through targeted guidance within the learner&apos;s current capabilities.
-                    </p>
-                  </div>
-                  
-                  <div className="bg-gray-50 p-3 rounded-lg">
-                    <div className="font-medium text-teal-700">Medium vs. Tool Paradigm</div>
-                    <p className="text-sm mt-1">
-                      While LLMs&apos; flexibility suggests potential as a medium for exploration, their fixed response patterns reveal aspects still operating within the tool paradigm.
-                    </p>
+                <div className="flex items-center mb-3">
+                  <Book className="h-6 w-6 text-teal-600 mr-2" />
+                  <h3 className="text-xl font-semibold text-teal-800">Learning Theory Impact</h3>
+                </div>
+                
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <div className="space-y-3">
+                    <div className="bg-white rounded-lg shadow-sm p-3 border border-gray-200">
+                      <h4 className="font-medium text-teal-700 text-sm">Constructivist Learning</h4>
+                      <div className="border-t border-dashed border-gray-200 my-1"></div>
+                      <p className="text-xs text-gray-600">LLMs prioritize information delivery over incremental construction</p>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg shadow-sm p-3 border border-gray-200">
+                      <h4 className="font-medium text-teal-700 text-sm">Zone of Proximal Development</h4>
+                      <div className="border-t border-dashed border-gray-200 my-1"></div>
+                      <p className="text-xs text-gray-600">Human tutors use simpler interactions optimized for learner's current capabilities</p>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg shadow-sm p-3 border border-gray-200 flex items-start">
+                      <div>
+                        <h4 className="font-medium text-teal-700 text-sm">Medium vs. Tool Paradigm</h4>
+                        <p className="text-xs text-gray-600">LLMs offer exploration flexibility yet operate in fixed tool-like patterns</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
             
-            <div className="mt-6 bg-teal-50 p-4 rounded-lg">
-              <div className="flex items-start">
-                <div className="flex-shrink-0 mt-1">
-                  <div className="w-2 h-2 rounded-full bg-teal-600"></div>
-                </div>
-                <p className="ml-2 text-gray-800">
-                  <span className="font-medium text-teal-700">Key insight:</span> LLMs represent a hybrid educational technology that combines unprecedented flexibility with new forms of fixed patterns, challenging us to develop new theoretical frameworks for understanding AI-powered learning.
+            <div className="mt-6 bg-gradient-to-r from-teal-50 to-cyan-50 p-4 rounded-lg">
+              <div className="flex items-center">
+                <div className="w-3 h-3 rounded-full bg-teal-600 mr-3"></div>
+                <p className="text-gray-800">
+                  <span className="font-medium text-teal-700">Key insight:</span> LLMs combine unprecedented flexibility with distinctive fixed patterns, challenging us to develop new theoretical frameworks for AI-powered learning
                 </p>
               </div>
             </div>
@@ -131,94 +171,73 @@ const DiscussionSlideTemplate = ({ currentSubsection = 'theoretical', updateCurr
           </div>
           
           <div className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="text-xl font-semibold mb-4 text-teal-800">Design Considerations</h3>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start">
-                    <span className="text-teal-600 mr-2 font-bold">•</span>
-                    <span><span className="font-medium">Response complexity guidance</span>: Systems may benefit from explicit guidance on response complexity to better match human tutoring patterns</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-teal-600 mr-2 font-bold">•</span>
-                    <span><span className="font-medium">Model selection impact</span>: Choice of underlying model significantly affects interaction style and should match pedagogical goals</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-teal-600 mr-2 font-bold">•</span>
-                    <span><span className="font-medium">Context-sensitive prompting</span>: Designing prompts that adapt based on student situation could improve pedagogical alignment</span>
-                  </li>
-                </ul>
-                
-                <div className="mt-4 bg-teal-50 p-4 rounded-lg">
-                  <h4 className="font-medium text-teal-700 mb-2">Beyond Model Selection</h4>
-                  <p className="text-sm text-gray-700">
-                    Rather than viewing divergence from human patterns as necessarily problematic, designers might identify specific contexts where different interaction styles are most beneficial.
-                  </p>
+            {/* Main assertion quote - Updated to match theoretical section style */}
+            <div className="mb-6">
+              <div className="bg-teal-50 p-4 rounded-lg border-l-4 border-teal-600">
+                <p className="text-gray-800 italic">
+                  "The distinctive patterns found in LLM tutoring suggest a need for intentional design choices that strategically leverage their unique capabilities."
+                </p>
+                <p className="text-xs text-right mt-1 text-teal-700">— Thesis p.92</p>
+              </div>
+            </div>
+            
+            {/* Main content with 3 focused points - Made cards smaller */}
+            <div className="grid grid-cols-1 gap-4">
+              {/* KEY POINT 1 */}
+              <div className="bg-white rounded-lg p-3 border-l-4 border-teal-500 shadow-sm">
+                <div className="flex items-start">
+                  <div className="bg-teal-100 rounded-full p-2 mr-3 flex-shrink-0">
+                    <LayoutGrid className="h-5 w-5 text-teal-700" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-teal-800 mb-1">Design Considerations</h3>
+                    <p className="text-sm text-gray-700">
+                      Rather than viewing divergence from human patterns as problematic, focus on understanding when different approaches are most effective.
+                    </p>
+                  </div>
                 </div>
               </div>
               
-              <div>
-                <h3 className="text-xl font-semibold mb-4 text-teal-800">Implementation Approaches</h3>
-                <div className="bg-gray-50 p-4 rounded-lg mb-4">
-                  <h4 className="font-medium text-teal-700 mb-2">Hybrid Tutoring Systems</h4>
-                  <div className="flex">
-                    <div className="w-1/2 pr-2">
-                      <p className="text-sm font-medium mb-1">Human-Like Approach</p>
-                      <ul className="text-xs space-y-1 text-gray-700 list-disc pl-4">
-                        <li>Single-action responses for initial instruction</li>
-                        <li>Focused guidance on specific errors</li>
-                        <li>Brief affirmations for correct answers</li>
-                      </ul>
-                    </div>
-                    <div className="w-1/2 pl-2">
-                      <p className="text-sm font-medium mb-1">LLM-Native Approach</p>
-                      <ul className="text-xs space-y-1 text-gray-700 list-disc pl-4">
-                        <li>Multi-action responses for concept reviews</li>
-                        <li>Comprehensive explanations for complex topics</li>
-                        <li>Varied examples for different learning styles</li>
-                      </ul>
-                    </div>
+              {/* KEY POINT 2 */}
+              <div className="bg-white rounded-lg p-3 border-l-4 border-blue-500 shadow-sm">
+                <div className="flex items-start">
+                  <div className="bg-blue-100 rounded-full p-2 mr-3 flex-shrink-0">
+                    <Sparkles className="h-5 w-5 text-blue-700" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-blue-800 mb-1">Model Selection Impact</h3>
+                    <p className="text-sm text-gray-700">
+                      Different models create distinct teaching styles that impact the learning experience beyond simple performance metrics.
+                    </p>
                   </div>
                 </div>
-                
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-medium text-teal-700 mb-2">Educational Adaptation Framework</h4>
-                  <p className="text-sm text-gray-700 mb-2">
-                    A proposed framework for adapting LLM tutoring to different educational contexts:
-                  </p>
-                  <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div className="bg-teal-50 p-2 rounded">
-                      <div className="font-medium">Novice Learning</div>
-                      <p>Focus on simpler, human-like interactions with clear, focused guidance</p>
-                    </div>
-                    <div className="bg-teal-50 p-2 rounded">
-                      <div className="font-medium">Expert Learning</div>
-                      <p>Leverage comprehensive responses with rich connections between concepts</p>
-                    </div>
-                    <div className="bg-teal-50 p-2 rounded">
-                      <div className="font-medium">Procedural Knowledge</div>
-                      <p>Direct, step-by-step guidance with single-action focus</p>
-                    </div>
-                    <div className="bg-teal-50 p-2 rounded">
-                      <div className="font-medium">Conceptual Knowledge</div>
-                      <p>Multi-perspective explanations with varied examples</p>
-                    </div>
+              </div>
+              
+              {/* KEY POINT 3 - Simplified text */}
+              <div className="bg-white rounded-lg p-3 border-l-4 border-purple-500 shadow-sm">
+                <div className="flex items-start">
+                  <div className="bg-purple-100 rounded-full p-2 mr-3 flex-shrink-0">
+                    <Code className="h-5 w-5 text-purple-700" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-purple-800 mb-1">Interaction Design</h3>
+                    <p className="text-sm text-gray-700">
+                      AI tutors respond differently to student actions compared to humans. We need clearer guidelines for how AI systems should respond to different types of student questions and mistakes.
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
             
-            <div className="mt-6 bg-gray-100 p-4 rounded-lg">
-              <div className="flex items-start">
-                <div className="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0">
-                  <span className="text-teal-700 font-bold">!</span>
+            {/* Bottom recommendation/summary */}
+            <div className="mt-6 bg-gradient-to-r from-teal-50 to-blue-50 p-4 rounded-lg border border-teal-100">
+              <div className="flex items-center">
+                <div className="bg-teal-100 rounded-full p-2 mr-3 flex-shrink-0">
+                  <Lightbulb className="h-5 w-5 text-teal-700" />
                 </div>
-                <div className="ml-3">
-                  <p className="text-gray-800 font-medium">Design Recommendation</p>
-                  <p className="text-sm text-gray-700">
-                    Rather than forcing LLMs to mimic human tutoring patterns exactly, educational designers should develop new frameworks that strategically leverage different interaction patterns for different learning contexts.
-                  </p>
-                </div>
+                <p className="text-gray-800">
+                  <span className="font-medium">Key recommendation:</span> Develop strategic frameworks that leverage AI interaction patterns for specific learning contexts rather than forcing them to mimic human patterns
+                </p>
               </div>
             </div>
           </div>
@@ -235,105 +254,131 @@ const DiscussionSlideTemplate = ({ currentSubsection = 'theoretical', updateCurr
           </div>
           
           <div className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Core assertion in a clean, simple style */}
+            <div className="mb-5 bg-gray-50 p-3 rounded-lg border-l-4 border-teal-500">
+              <p className="text-gray-700 italic text-sm">
+                Rather than viewing differences as limitations, they represent opportunities for new hybrid approaches
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* LIMITATIONS COLUMN - Simplified */}
               <div>
-                <h3 className="text-xl font-semibold mb-4 text-teal-800">Research Limitations</h3>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start">
-                    <span className="text-teal-600 mr-2 font-bold">•</span>
-                    <span><span className="font-medium">Dataset specificity</span>: Focused only on Italian preposition learning, limiting generalizability to other domains</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-teal-600 mr-2 font-bold">•</span>
-                    <span><span className="font-medium">Tutor population</span>: Relied on crowdsourced rather than professional tutors</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-teal-600 mr-2 font-bold">•</span>
-                    <span><span className="font-medium">No learning outcomes</span>: Analysis focused on behavioral patterns rather than effectiveness</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-teal-600 mr-2 font-bold">•</span>
-                    <span><span className="font-medium">Controlled environment</span>: Interactions occurred in a structured setting rather than natural learning contexts</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-teal-600 mr-2 font-bold">•</span>
-                    <span><span className="font-medium">Model timing</span>: Research used specific versions of LLMs that may be superseded by newer models</span>
-                  </li>
-                </ul>
+                <div className="flex items-center mb-4">
+                  <h3 className="text-lg font-semibold text-teal-800">Research Scope</h3>
+                </div>
+                
+                {/* Limitations in a cleaner list format */}
+                <div className="space-y-3 mb-5">
+                  <div className="flex items-center">
+                    <div className="bg-gray-100 p-2 rounded-full mr-3">
+                      <Book className="h-4 w-4 text-teal-600" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-700">Italian prepositions only</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center">
+                    <div className="bg-gray-100 p-2 rounded-full mr-3">
+                      <Code className="h-4 w-4 text-teal-600" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-700">Three models examined</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center">
+                    <div className="bg-gray-100 p-2 rounded-full mr-3">
+                      <BarChart className="h-4 w-4 text-teal-600" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-700">Patterns vs. learning outcomes</p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Simple hybrid concept */}
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h4 className="text-sm font-medium text-teal-700 mb-3">Hybrid Approach Opportunity</h4>
+                  <div className="flex items-center justify-between px-4">
+                    <div className="text-center">
+                      <div className="text-xs text-gray-600 mb-1">Human</div>
+                      <div className="bg-gray-100 p-2 rounded-full mx-auto">
+                        <Brain className="h-4 w-4 text-teal-600" />
+                      </div>
+                    </div>
+                    <div className="flex-grow mx-4 border-t border-dashed border-gray-300"></div>
+                    <div className="text-center">
+                      <div className="text-xs text-gray-600 mb-1">AI</div>
+                      <div className="bg-gray-100 p-2 rounded-full mx-auto">
+                        <Sparkles className="h-4 w-4 text-teal-600" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               
+              {/* FUTURE DIRECTIONS COLUMN - Simplified */}
               <div>
-                <h3 className="text-xl font-semibold mb-4 text-teal-800">Future Research Directions</h3>
-                <div className="space-y-4">
-                  <div className="bg-teal-50 p-3 rounded-lg">
-                    <div className="font-medium text-teal-700">Domain Expansion</div>
-                    <p className="text-sm mt-1">
-                      Extend analysis to more complex domains such as mathematics, science, and creative writing to identify domain-specific interaction patterns
-                    </p>
+                <div className="flex items-center mb-4">
+                  <h3 className="text-lg font-semibold text-teal-800">Future Research</h3>
+                </div>
+                
+                {/* Future directions in a cleaner format */}
+                <div className="bg-white p-4 rounded-lg border border-gray-200 mb-5">
+                  <div className="space-y-4">
+                    <div className="flex items-start">
+                      <div className="bg-gray-100 p-2 rounded-full mr-3 flex-shrink-0">
+                        <Brain className="h-4 w-4 text-teal-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-800 text-sm">Base Models</h4>
+                        <p className="text-xs text-gray-600">Effects of pre-training vs. instruction tuning</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start">
+                      <div className="bg-gray-100 p-2 rounded-full mr-3 flex-shrink-0">
+                        <BarChart className="h-4 w-4 text-teal-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-800 text-sm">Learning Outcomes</h4>
+                        <p className="text-xs text-gray-600">How patterns affect student learning</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start">
+                      <div className="bg-gray-100 p-2 rounded-full mr-3 flex-shrink-0">
+                        <LayoutGrid className="h-4 w-4 text-teal-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-800 text-sm">Model Diversity</h4>
+                        <p className="text-xs text-gray-600">Broader range of architectures</p>
+                      </div>
+                    </div>
                   </div>
-                  
-                  <div className="bg-teal-50 p-3 rounded-lg">
-                    <div className="font-medium text-teal-700">Base Model Behavior</div>
-                    <p className="text-sm mt-1">
-                      Investigate how pre-training vs. instruction tuning affects tutoring patterns by comparing base LLMs with fine-tuned versions
-                    </p>
+                </div>
+                
+                {/* Theoretical connection */}
+                <div className="flex items-start">
+                  <div className="bg-gray-100 p-2 rounded-full mr-3 flex-shrink-0">
+                    <Book className="h-4 w-4 text-teal-600" />
                   </div>
-                  
-                  <div className="bg-teal-50 p-3 rounded-lg">
-                    <div className="font-medium text-teal-700">Learning Outcomes</div>
-                    <p className="text-sm mt-1">
-                      Conduct controlled studies to evaluate how different interaction patterns affect actual student learning and satisfaction
-                    </p>
-                  </div>
-                  
-                  <div className="bg-teal-50 p-3 rounded-lg">
-                    <div className="font-medium text-teal-700">Intervention Strategies</div>
-                    <p className="text-sm mt-1">
-                      Test different prompting approaches designed to elicit more human-like tutoring patterns when pedagogically beneficial
+                  <div>
+                    <h4 className="text-sm font-medium text-gray-800">Papert's Vision</h4>
+                    <p className="text-xs text-gray-600">
+                      Computers as learning medium but with their own emerging patterns rather than neutral tools
                     </p>
                   </div>
                 </div>
               </div>
             </div>
             
-            <div className="mt-6 bg-gray-100 p-4 rounded-lg">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <h4 className="text-md font-semibold mb-2 text-teal-800">Methodological Extensions</h4>
-                  <ul className="text-sm space-y-1 text-gray-700">
-                    <li className="flex items-start">
-                      <span className="text-teal-600 mr-2">→</span>
-                      <span>Longitudinal studies of interaction evolution</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-teal-600 mr-2">→</span>
-                      <span>Multi-turn analysis beyond single responses</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-teal-600 mr-2">→</span>
-                      <span>Cross-cultural tutoring pattern comparison</span>
-                    </li>
-                  </ul>
-                </div>
-                
-                <div>
-                  <h4 className="text-md font-semibold mb-2 text-teal-800">Theoretical Questions</h4>
-                  <ul className="text-sm space-y-1 text-gray-700">
-                    <li className="flex items-start">
-                      <span className="text-teal-600 mr-2">→</span>
-                      <span>Do LLM patterns represent a new pedagogy?</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-teal-600 mr-2">→</span>
-                      <span>How does model architecture influence teaching style?</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-teal-600 mr-2">→</span>
-                      <span>Can fluid/fixed pattern framework apply beyond education?</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+            <div className="mt-6 border-t border-gray-100 pt-4 text-center">
+              <p className="text-sm text-gray-700">
+                <span className="font-medium text-teal-700">Key insight:</span> We need new theoretical frameworks to understand fluid yet patterned AI teaching
+              </p>
             </div>
           </div>
         </div>
