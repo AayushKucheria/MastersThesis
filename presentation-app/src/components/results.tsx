@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, ReactElement, ReactNode } from 'react';
 
 // Define the props interface for the component
 interface ResultsSlideProps {
@@ -8,21 +8,25 @@ interface ResultsSlideProps {
   updateCurrentSubsection?: (subsection: string) => void;
 }
 
-const ResultsSlideTemplate = ({ currentSubsection = 'distribution', updateCurrentSubsection }: ResultsSlideProps) => {
+// Define slide interface for better typing
+interface Slide {
+  title: string;
+  content: ReactNode;
+}
+
+const ResultsSlideTemplate = ({ currentSubsection = 'distribution', updateCurrentSubsection }: ResultsSlideProps): ReactElement => {
   // Map subsection IDs to slide indices
   const subsectionMap = useMemo(() => ({
     'distribution': 0,
     'complexity': 1,
-    'flows': 2,
-    'model-styles': 3
+    'flows': 2
   }), []);
   
   // Reverse map to get subsection from index
   const indexToSubsectionMap = useMemo(() => ({
     0: 'distribution',
     1: 'complexity',
-    2: 'flows',
-    3: 'model-styles'
+    2: 'flows'
   }), []);
   
   // Set the current slide based on the subsection prop
@@ -37,7 +41,7 @@ const ResultsSlideTemplate = ({ currentSubsection = 'distribution', updateCurren
   }, [currentSubsection, subsectionMap]);
 
   // Function to handle slide changes
-  const handleSlideChange = (index: number) => {
+  const handleSlideChange = (index: number): void => {
     setCurrentSlide(index);
     // Sync with parent component if the updateCurrentSubsection function is provided
     if (updateCurrentSubsection) {
@@ -46,127 +50,137 @@ const ResultsSlideTemplate = ({ currentSubsection = 'distribution', updateCurren
   };
   
   // This is a placeholder - your actual slides would be defined here
-  const slides = [
+  const slides: Slide[] = [
     {
         title: "Action Distribution",
         content: (
           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
             <div className="bg-purple-700 px-6 py-4">
               <h2 className="text-2xl font-bold text-white">Action Distribution</h2>
-              <p className="text-purple-100 text-lg">Patterns in tutoring actions</p>
+              <p className="text-purple-100 text-lg">Comparing human vs. AI tutoring actions</p>
             </div>
             
             <div className="p-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="text-xl font-semibold mb-3 text-purple-800">Key Findings</h3>
-                  <div className="space-y-4">
-                    <div className="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
-                      <h4 className="font-medium text-purple-800 mb-2">Human vs. LLM Action Preference</h4>
-                      <p className="text-gray-700">
-                        LLMs show consistent biases toward certain action types compared to human tutors, particularly favoring explicit explanation and guided problem-solving.
-                      </p>
-                    </div>
-                    
-                    <div className="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
-                      <h4 className="font-medium text-purple-800 mb-2">Action Diversity</h4>
-                      <p className="text-gray-700">
-                        Human tutors demonstrate greater variability in action selection, while LLMs exhibit more predictable, template-like patterns within each model.
-                      </p>
-                    </div>
-                    
-                    <div className="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
-                      <h4 className="font-medium text-purple-800 mb-2">Contextual Adaptation</h4>
-                      <p className="text-gray-700">
-                        Human tutors show higher sensitivity to student needs in action selection, shifting strategies more fluidly than LLMs.
-                      </p>
-                    </div>
+                  <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 mb-4">
+                    <h3 className="text-lg font-semibold mb-3 text-purple-800">Key Insights</h3>
+                    <ul className="space-y-2">
+                      <li className="flex items-start">
+                        <span className="text-purple-600 mr-2 mt-1">•</span>
+                        <span className="text-gray-700">Both human and AI tutors prefer <span className="font-medium">hints</span> (~45%)</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-purple-600 mr-2 mt-1">•</span>
+                        <span className="text-gray-700">Humans balance <span className="font-medium">questions</span> and <span className="font-medium">corrections</span> equally (~20% each)</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-purple-600 mr-2 mt-1">•</span>
+                        <span className="text-gray-700">AI systems favor <span className="font-medium">corrections</span> (~30%) over <span className="font-medium">questions</span> (~5%)</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-purple-600 mr-2 mt-1">•</span>
+                        <span className="text-gray-700">LLaMA's profile most resembles human tutors</span>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div className="bg-purple-50 p-4 rounded-lg border border-purple-100">
+                    <h4 className="font-medium text-purple-800 mb-2">Implications</h4>
+                    <p className="text-gray-700 text-sm">
+                      Humans adopt a more <span className="font-medium">Socratic approach</span> with questions, 
+                      while AI systems prefer <span className="font-medium">directive guidance</span> through corrections.
+                      These differences persist despite LLMs being trained on human content.
+                    </p>
                   </div>
                 </div>
                 
                 <div>
-                  <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
-                    <div className="px-4 py-3 bg-gray-50 border-b border-gray-200">
-                      <h4 className="font-semibold text-gray-800">Action Distribution Comparison</h4>
+                  <div className="bg-white p-2 rounded-lg border border-gray-200 shadow-sm">
+                    <div className="px-3 py-2 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
+                      <h4 className="font-semibold text-gray-800">Action Distribution</h4>
+                      <div className="flex items-center space-x-2 text-xs">
+                        <div className="flex items-center">
+                          <div className="w-3 h-3 bg-blue-500 rounded-sm mr-1"></div>
+                          <span>Human</span>
+                        </div>
+                        <div className="flex items-center">
+                          <div className="w-3 h-3 bg-purple-600 rounded-sm mr-1"></div>
+                          <span>AI (avg)</span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="p-4">
-                      <div className="space-y-3">
-                        <div className="flex items-center">
-                          <div className="w-24 text-sm text-gray-600">Explanation</div>
-                          <div className="flex-1 h-6 bg-gray-200 rounded-full overflow-hidden">
-                            <div className="h-full bg-purple-600" style={{ width: '65%' }}></div>
-                          </div>
-                          <div className="ml-2 w-10 text-sm text-gray-600">65%</div>
-                          <div className="ml-2 w-16 text-xs text-gray-500">LLMs</div>
+                    
+                    {/* Chart visualization inspired by the bar charts */}
+                    <div className="pt-6 pb-2 px-4">
+                      <div className="mb-6">
+                        <div className="flex justify-between items-center mb-1">
+                          <div className="text-sm font-medium text-gray-700">Hints</div>
+                          <div className="text-xs text-gray-500">~45%</div>
                         </div>
-                        
-                        <div className="flex items-center">
-                          <div className="w-24 text-sm text-gray-600">Explanation</div>
-                          <div className="flex-1 h-6 bg-gray-200 rounded-full overflow-hidden">
-                            <div className="h-full bg-blue-500" style={{ width: '42%' }}></div>
-                          </div>
-                          <div className="ml-2 w-10 text-sm text-gray-600">42%</div>
-                          <div className="ml-2 w-16 text-xs text-gray-500">Humans</div>
+                        <div className="relative h-8 flex">
+                          <div className="absolute inset-y-0 left-0 w-[45%] bg-blue-500 rounded-l-sm"></div>
+                          <div className="absolute inset-y-0 left-0 w-[45%] bg-purple-600 rounded-r-sm opacity-70 translate-y-2"></div>
                         </div>
-                        
-                        <div className="flex items-center">
-                          <div className="w-24 text-sm text-gray-600">Scaffolding</div>
-                          <div className="flex-1 h-6 bg-gray-200 rounded-full overflow-hidden">
-                            <div className="h-full bg-purple-600" style={{ width: '23%' }}></div>
-                          </div>
-                          <div className="ml-2 w-10 text-sm text-gray-600">23%</div>
-                          <div className="ml-2 w-16 text-xs text-gray-500">LLMs</div>
+                      </div>
+                      
+                      <div className="mb-6">
+                        <div className="flex justify-between items-center mb-1">
+                          <div className="text-sm font-medium text-gray-700">Questions</div>
+                          <div className="text-xs text-gray-500">Human: 20% | AI: 5%</div>
                         </div>
-                        
-                        <div className="flex items-center">
-                          <div className="w-24 text-sm text-gray-600">Scaffolding</div>
-                          <div className="flex-1 h-6 bg-gray-200 rounded-full overflow-hidden">
-                            <div className="h-full bg-blue-500" style={{ width: '31%' }}></div>
-                          </div>
-                          <div className="ml-2 w-10 text-sm text-gray-600">31%</div>
-                          <div className="ml-2 w-16 text-xs text-gray-500">Humans</div>
+                        <div className="relative h-8 flex">
+                          <div className="absolute inset-y-0 left-0 w-[20%] bg-blue-500 rounded-l-sm"></div>
+                          <div className="absolute inset-y-0 left-0 w-[5%] bg-purple-600 rounded-r-sm opacity-70 translate-y-2"></div>
                         </div>
-                        
-                        <div className="flex items-center">
-                          <div className="w-24 text-sm text-gray-600">Feedback</div>
-                          <div className="flex-1 h-6 bg-gray-200 rounded-full overflow-hidden">
-                            <div className="h-full bg-purple-600" style={{ width: '42%' }}></div>
-                          </div>
-                          <div className="ml-2 w-10 text-sm text-gray-600">42%</div>
-                          <div className="ml-2 w-16 text-xs text-gray-500">LLMs</div>
+                      </div>
+                      
+                      <div className="mb-6">
+                        <div className="flex justify-between items-center mb-1">
+                          <div className="text-sm font-medium text-gray-700">Corrections</div>
+                          <div className="text-xs text-gray-500">Human: 20% | AI: 30%</div>
                         </div>
-                        
-                        <div className="flex items-center">
-                          <div className="w-24 text-sm text-gray-600">Feedback</div>
-                          <div className="flex-1 h-6 bg-gray-200 rounded-full overflow-hidden">
-                            <div className="h-full bg-blue-500" style={{ width: '38%' }}></div>
-                          </div>
-                          <div className="ml-2 w-10 text-sm text-gray-600">38%</div>
-                          <div className="ml-2 w-16 text-xs text-gray-500">Humans</div>
+                        <div className="relative h-8 flex">
+                          <div className="absolute inset-y-0 left-0 w-[20%] bg-blue-500 rounded-l-sm"></div>
+                          <div className="absolute inset-y-0 left-0 w-[30%] bg-purple-600 rounded-r-sm opacity-70 translate-y-2"></div>
+                        </div>
+                      </div>
+                      
+                      <div className="mb-3">
+                        <div className="flex justify-between items-center mb-1">
+                          <div className="text-sm font-medium text-gray-700">Confirmations</div>
+                          <div className="text-xs text-gray-500">Human: 15% | AI: 10%</div>
+                        </div>
+                        <div className="relative h-8 flex">
+                          <div className="absolute inset-y-0 left-0 w-[15%] bg-blue-500 rounded-l-sm"></div>
+                          <div className="absolute inset-y-0 left-0 w-[10%] bg-purple-600 rounded-r-sm opacity-70 translate-y-2"></div>
                         </div>
                       </div>
                     </div>
                   </div>
                   
-                  <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-                    <div className="flex items-start">
-                      <div className="flex-shrink-0 w-5 h-5 text-yellow-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                        </svg>
+                  <div className="mt-4 flex space-x-2">
+                    <div className="p-3 bg-blue-50 border border-blue-100 rounded-lg flex-1">
+                      <h5 className="text-xs font-semibold text-blue-800 mb-1">Model Variations</h5>
+                      <div className="flex space-x-2 text-xs">
+                        <div className="flex-1 bg-white p-2 rounded border border-gray-200">
+                          <div className="font-medium text-gray-900 mb-1">LLaMA 3.1</div>
+                          <div className="text-gray-600">More human-like profile</div>
+                        </div>
+                        <div className="flex-1 bg-white p-2 rounded border border-gray-200">
+                          <div className="font-medium text-gray-900 mb-1">GPT-4o/Gemini</div>
+                          <div className="text-gray-600">Favor corrections</div>
+                        </div>
                       </div>
-                      <p className="ml-2 text-sm text-gray-700">
-                        <span className="font-medium">Note:</span> Values are approximate representations based on analysis of the CIMA dataset and LLM-generated tutoring responses.
-                      </p>
                     </div>
                   </div>
                 </div>
               </div>
               
-              <div className="mt-6 p-4 bg-gray-100 rounded-lg">
-                <p className="text-gray-700">
-                  <span className="font-medium">Implications:</span> The systematic differences in action distribution between human and AI tutors suggest that even with their fluid interfaces, LLMs exhibit fixed patterns in their tutoring approaches that differ fundamentally from human teaching strategies.
-                </p>
+              <div className="mt-4 flex justify-end">
+                <div className="text-xs text-gray-500 italic">
+                  Based on analysis of CIMA dataset and LLM-generated tutoring responses
+                </div>
               </div>
             </div>
           </div>
@@ -178,159 +192,164 @@ const ResultsSlideTemplate = ({ currentSubsection = 'distribution', updateCurren
           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
             <div className="bg-purple-700 px-6 py-4">
               <h2 className="text-2xl font-bold text-white">Response Complexity</h2>
-              <p className="text-purple-100 text-lg">Analyzing tutoring response structures</p>
+              <p className="text-purple-100 text-lg">Number of actions per tutoring response</p>
             </div>
             
             <div className="p-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="text-xl font-semibold mb-3 text-purple-800">Structural Patterns</h3>
+                  <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 mb-4">
+                    <h3 className="text-lg font-semibold mb-3 text-purple-800">Key Differences</h3>
+                    <ul className="space-y-2">
+                      <li className="flex items-start">
+                        <span className="text-purple-600 mr-2 mt-1">•</span>
+                        <span className="text-gray-700">Human tutors strongly prefer <span className="font-medium">single-action</span> responses (~70%)</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-purple-600 mr-2 mt-1">•</span>
+                        <span className="text-gray-700">AI tutors favor <span className="font-medium">dual-action</span> responses, with model variations</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-purple-600 mr-2 mt-1">•</span>
+                        <span className="text-gray-700">LLaMA shows strongest preference for dual-actions (>80%)</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-purple-600 mr-2 mt-1">•</span>
+                        <span className="text-gray-700">GPT-4o and Gemini are more balanced but still favor complexity</span>
+                      </li>
+                    </ul>
+                  </div>
                   
-                  <div className="space-y-4">
-                    <div className="bg-purple-50 p-4 rounded-lg">
-                      <h4 className="font-medium text-purple-800 mb-2">Response Length</h4>
-                      <p className="text-gray-700">
-                        LLM tutors consistently produce longer responses than human tutors, with an average of 137 words compared to 78 words for humans.
-                      </p>
-                      <div className="mt-3 flex items-center space-x-1">
-                        <div className="h-4 w-20 bg-blue-500 rounded-l"></div>
-                        <div className="h-4 w-36 bg-purple-600 rounded-r"></div>
-                      </div>
-                      <div className="mt-1 flex text-xs">
-                        <div className="w-20 text-blue-700">Humans</div>
-                        <div className="w-36 text-purple-700">LLMs</div>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-purple-50 p-4 rounded-lg">
-                      <h4 className="font-medium text-purple-800 mb-2">Multi-Part Structures</h4>
-                      <p className="text-gray-700">
-                        LLM responses typically contain more distinct components (greeting, explanation, example, question, encouragement) than human responses.
-                      </p>
-                      
-                      <div className="mt-3 space-y-2">
-                        <div className="flex items-center">
-                          <div className="w-16 text-sm text-gray-600">Humans:</div>
-                          <div className="flex space-x-1">
-                            <div className="h-6 w-10 bg-blue-300 rounded"></div>
-                            <div className="h-6 w-20 bg-blue-500 rounded"></div>
-                            <div className="h-6 w-8 bg-blue-300 rounded"></div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center">
-                          <div className="w-16 text-sm text-gray-600">LLMs:</div>
-                          <div className="flex space-x-1">
-                            <div className="h-6 w-8 bg-purple-300 rounded"></div>
-                            <div className="h-6 w-24 bg-purple-600 rounded"></div>
-                            <div className="h-6 w-16 bg-purple-500 rounded"></div>
-                            <div className="h-6 w-12 bg-purple-400 rounded"></div>
-                            <div className="h-6 w-8 bg-purple-300 rounded"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  <div className="bg-purple-50 p-4 rounded-lg border border-purple-100">
+                    <h4 className="font-medium text-purple-800 mb-2">Teaching Philosophy</h4>
+                    <p className="text-gray-700 text-sm">
+                      Human preference for single actions suggests understanding of <span className="font-medium">cognitive load theory</span>, 
+                      while AI systems' complex responses imply a model of teaching as <span className="font-medium">information delivery</span> 
+                      rather than guided discovery.
+                    </p>
                   </div>
                 </div>
                 
                 <div>
-                  <h3 className="text-xl font-semibold mb-3 text-purple-800">Content Characteristics</h3>
-                  
-                  <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
-                    <table className="min-w-full divide-y divide-gray-200">
-                      <thead className="bg-gray-50">
-                        <tr>
-                          <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Feature
-                          </th>
-                          <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Human Tutors
-                          </th>
-                          <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            LLM Tutors
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody className="bg-white divide-y divide-gray-200">
-                        <tr>
-                          <td className="px-4 py-3 text-sm text-gray-700">
-                            Linguistic complexity
-                          </td>
-                          <td className="px-4 py-3 text-sm text-gray-500">
-                            Moderate
-                          </td>
-                          <td className="px-4 py-3 text-sm text-gray-500">
-                            Higher
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="px-4 py-3 text-sm text-gray-700">
-                            Examples provided
-                          </td>
-                          <td className="px-4 py-3 text-sm text-gray-500">
-                            1-2 typically
-                          </td>
-                          <td className="px-4 py-3 text-sm text-gray-500">
-                            2-4 typically
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="px-4 py-3 text-sm text-gray-700">
-                            Questions posed
-                          </td>
-                          <td className="px-4 py-3 text-sm text-gray-500">
-                            More focused
-                          </td>
-                          <td className="px-4 py-3 text-sm text-gray-500">
-                            More numerous
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="px-4 py-3 text-sm text-gray-700">
-                            Social elements
-                          </td>
-                          <td className="px-4 py-3 text-sm text-gray-500">
-                            Variable
-                          </td>
-                          <td className="px-4 py-3 text-sm text-gray-500">
-                            Consistently present
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="px-4 py-3 text-sm text-gray-700">
-                            Metacognitive cues
-                          </td>
-                          <td className="px-4 py-3 text-sm text-gray-500">
-                            Frequent
-                          </td>
-                          <td className="px-4 py-3 text-sm text-gray-500">
-                            Less frequent
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                  {/* Visual chart showing the histograms */}
+                  <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                    <div className="px-3 py-2 bg-gray-50 border-b border-gray-200">
+                      <h4 className="font-semibold text-gray-800">Actions per Response</h4>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-1 p-3">
+                      <div className="bg-gray-50 p-2 rounded">
+                        <div className="text-xs font-medium text-center text-gray-600 mb-2">Human Tutors (CIMA)</div>
+                        <div className="h-32 relative">
+                          {/* Bar chart for human */}
+                          <div className="absolute bottom-0 left-[15%] w-[15%] bg-blue-500 h-[70%]"></div>
+                          <div className="absolute bottom-0 left-[40%] w-[15%] bg-blue-500 h-[25%]"></div>
+                          <div className="absolute bottom-0 left-[65%] w-[15%] bg-blue-500 h-[5%]"></div>
+                          
+                          {/* X-axis labels */}
+                          <div className="absolute bottom-[-20px] left-[15%] text-xs text-gray-600">1</div>
+                          <div className="absolute bottom-[-20px] left-[40%] text-xs text-gray-600">2</div>
+                          <div className="absolute bottom-[-20px] left-[65%] text-xs text-gray-600">3</div>
+                          
+                          {/* Y-axis labels */}
+                          <div className="absolute bottom-0 left-[-15px] text-xs text-gray-600">0%</div>
+                          <div className="absolute bottom-[35%] left-[-15px] text-xs text-gray-600">35%</div>
+                          <div className="absolute bottom-[70%] left-[-15px] text-xs text-gray-600">70%</div>
+                        </div>
+                        <div className="text-xs text-center text-gray-500 mt-5">Number of Actions</div>
+                      </div>
+                      
+                      <div className="bg-gray-50 p-2 rounded">
+                        <div className="text-xs font-medium text-center text-gray-600 mb-2">LLaMA 3.1</div>
+                        <div className="h-32 relative">
+                          {/* Bar chart for LLaMA */}
+                          <div className="absolute bottom-0 left-[15%] w-[15%] bg-purple-600 h-[8%]"></div>
+                          <div className="absolute bottom-0 left-[40%] w-[15%] bg-purple-600 h-[82%]"></div>
+                          <div className="absolute bottom-0 left-[65%] w-[15%] bg-purple-600 h-[10%]"></div>
+                          
+                          {/* X-axis labels */}
+                          <div className="absolute bottom-[-20px] left-[15%] text-xs text-gray-600">1</div>
+                          <div className="absolute bottom-[-20px] left-[40%] text-xs text-gray-600">2</div>
+                          <div className="absolute bottom-[-20px] left-[65%] text-xs text-gray-600">3</div>
+                          
+                          {/* Y-axis labels */}
+                          <div className="absolute bottom-0 left-[-15px] text-xs text-gray-600">0%</div>
+                          <div className="absolute bottom-[40%] left-[-15px] text-xs text-gray-600">40%</div>
+                          <div className="absolute bottom-[80%] left-[-15px] text-xs text-gray-600">80%</div>
+                        </div>
+                        <div className="text-xs text-center text-gray-500 mt-5">Number of Actions</div>
+                      </div>
+                      
+                      <div className="bg-gray-50 p-2 rounded">
+                        <div className="text-xs font-medium text-center text-gray-600 mb-2">GPT-4o</div>
+                        <div className="h-32 relative">
+                          {/* Bar chart for GPT-4o */}
+                          <div className="absolute bottom-0 left-[15%] w-[15%] bg-emerald-500 h-[30%]"></div>
+                          <div className="absolute bottom-0 left-[40%] w-[15%] bg-emerald-500 h-[65%]"></div>
+                          <div className="absolute bottom-0 left-[65%] w-[15%] bg-emerald-500 h-[5%]"></div>
+                          
+                          {/* X-axis labels */}
+                          <div className="absolute bottom-[-20px] left-[15%] text-xs text-gray-600">1</div>
+                          <div className="absolute bottom-[-20px] left-[40%] text-xs text-gray-600">2</div>
+                          <div className="absolute bottom-[-20px] left-[65%] text-xs text-gray-600">3</div>
+                          
+                          {/* Y-axis labels */}
+                          <div className="absolute bottom-0 left-[-15px] text-xs text-gray-600">0%</div>
+                          <div className="absolute bottom-[32.5%] left-[-15px] text-xs text-gray-600">32.5%</div>
+                          <div className="absolute bottom-[65%] left-[-15px] text-xs text-gray-600">65%</div>
+                        </div>
+                        <div className="text-xs text-center text-gray-500 mt-5">Number of Actions</div>
+                      </div>
+                      
+                      <div className="bg-gray-50 p-2 rounded">
+                        <div className="text-xs font-medium text-center text-gray-600 mb-2">Gemini Pro</div>
+                        <div className="h-32 relative">
+                          {/* Bar chart for Gemini */}
+                          <div className="absolute bottom-0 left-[15%] w-[15%] bg-amber-500 h-[45%]"></div>
+                          <div className="absolute bottom-0 left-[40%] w-[15%] bg-amber-500 h-[55%]"></div>
+                          <div className="absolute bottom-0 left-[65%] w-[15%] bg-amber-500 h-[0%]"></div>
+                          
+                          {/* X-axis labels */}
+                          <div className="absolute bottom-[-20px] left-[15%] text-xs text-gray-600">1</div>
+                          <div className="absolute bottom-[-20px] left-[40%] text-xs text-gray-600">2</div>
+                          <div className="absolute bottom-[-20px] left-[65%] text-xs text-gray-600">3</div>
+                          
+                          {/* Y-axis labels */}
+                          <div className="absolute bottom-0 left-[-15px] text-xs text-gray-600">0%</div>
+                          <div className="absolute bottom-[27.5%] left-[-15px] text-xs text-gray-600">27.5%</div>
+                          <div className="absolute bottom-[55%] left-[-15px] text-xs text-gray-600">55%</div>
+                        </div>
+                        <div className="text-xs text-center text-gray-500 mt-5">Number of Actions</div>
+                      </div>
+                    </div>
                   </div>
                   
-                  <div className="mt-4 p-4 bg-purple-50 rounded-lg">
-                    <h4 className="font-medium text-purple-800 mb-2">Template Structure in LLMs</h4>
-                    <p className="text-sm text-gray-700">
-                      Analysis revealed consistent patterns in how LLMs structure their responses:
-                    </p>
-                    <ol className="mt-2 ml-5 list-decimal text-sm text-gray-700 space-y-1">
-                      <li>Validation/acknowledgment of student input</li>
-                      <li>Explanation of concept or rule</li>
-                      <li>Examples demonstrating application</li>
-                      <li>Follow-up question or practice opportunity</li>
-                      <li>Encouragement or social closing</li>
-                    </ol>
+                  <div className="mt-4 p-3 bg-indigo-50 rounded-lg border border-indigo-100">
+                    <div className="flex items-start">
+                      <div className="flex-shrink-0 text-indigo-600 mt-0.5">
+                        <svg 
+                          xmlns="http://www.w3.org/2000/svg" 
+                          className="h-4 w-4" 
+                          viewBox="0 0 20 20" 
+                          fill="currentColor"
+                          aria-hidden="true"
+                          role="img"
+                        >
+                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <p className="ml-2 text-xs text-gray-700">
+                        This systematic difference appears consistent across all models, suggesting a <span className="font-medium">fundamental behavior</span> of LLMs in tutoring contexts rather than model-specific quirks.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
               
-              <div className="mt-6 p-4 bg-gray-100 rounded-lg">
-                <p className="text-gray-700">
-                  <span className="font-medium">Key insight:</span> The analysis shows that while LLMs offer more comprehensive responses, they follow predictable structural patterns that differ from the more variable and contextually adaptive structures used by human tutors.
-                </p>
+              <div className="mt-4 flex justify-end">
+                <div className="text-xs text-gray-500 italic">
+                  Based on analysis of CIMA dataset and LLM-generated tutoring responses
+                </div>
               </div>
             </div>
           </div>
@@ -342,212 +361,207 @@ const ResultsSlideTemplate = ({ currentSubsection = 'distribution', updateCurren
           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
             <div className="bg-purple-700 px-6 py-4">
               <h2 className="text-2xl font-bold text-white">Interaction Flows</h2>
-              <p className="text-purple-100 text-lg">Sequential patterns in tutoring dialogues</p>
+              <p className="text-purple-100 text-lg">Response Patterns in Tutoring Dialogues</p>
             </div>
             
             <div className="p-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="text-xl font-semibold mb-3 text-purple-800">Interaction Transitions</h3>
+                  <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 mb-4">
+                    <h3 className="text-lg font-semibold mb-3 text-purple-800">Key Interaction Patterns</h3>
+                    <ul className="space-y-2">
+                      <li className="flex items-start">
+                        <span className="text-purple-600 mr-2 mt-1">•</span>
+                        <span className="text-gray-700">Human tutors show <span className="font-medium">focused teaching strategies</span> with clear mappings between student actions and responses</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-purple-600 mr-2 mt-1">•</span>
+                        <span className="text-gray-700">AI tutors maintain <span className="font-medium">some basic alignment</span> with human strategies but show less distinct action-response mappings</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-purple-600 mr-2 mt-1">•</span>
+                        <span className="text-gray-700">Each AI model exhibits <span className="font-medium">distinct systematic patterns</span> that differ from both human tutors and other models</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-purple-600 mr-2 mt-1">•</span>
+                        <span className="text-gray-700">These reflect <span className="font-medium">genuine variations in teaching strategy</span>, not differences in situations being handled</span>
+                      </li>
+                    </ul>
+                  </div>
                   
-                  <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
-                    <div className="px-4 py-3 bg-gray-50 border-b border-gray-200">
-                      <h4 className="font-semibold text-gray-800">Response Patterns Following Student Actions</h4>
+                  <div className="bg-white p-2 rounded-lg border border-gray-200 shadow-sm">
+                    <div className="px-3 py-2 bg-blue-50 border-b border-blue-200 flex justify-between items-center">
+                      <h4 className="font-semibold text-blue-800">Human Tutor Response Strategies</h4>
                     </div>
+                    
                     <div className="p-4">
-                      <div className="space-y-4">
-                        <div>
-                          <p className="font-medium text-gray-700 mb-2">After Student Questions:</p>
-                          <div className="flex space-x-1 items-center">
-                            <div className="w-20 h-6 bg-blue-500 rounded-l flex items-center justify-center text-xs text-white">Humans</div>
-                            <div className="flex-1 bg-gray-100 p-2 text-sm text-gray-700">
-                              Direct answer (76%) → Elaboration (14%) → Counter-question (10%)
-                            </div>
-                          </div>
-                          <div className="mt-2 flex space-x-1 items-center">
-                            <div className="w-20 h-6 bg-purple-600 rounded-l flex items-center justify-center text-xs text-white">LLMs</div>
-                            <div className="flex-1 bg-gray-100 p-2 text-sm text-gray-700">
-                              Elaborate answer (83%) → Example (12%) → Counter-question (5%)
-                            </div>
+                      <div className="mb-5">
+                        <div className="flex justify-between items-center mb-1">
+                          <div className="text-sm font-medium text-gray-700">Student Guesses →</div>
+                          <div className="flex items-center space-x-1">
+                            <span className="text-xs px-2 py-0.5 bg-blue-100 text-blue-800 rounded">Hints (60%)</span>
+                            <span className="text-xs px-2 py-0.5 bg-blue-100 text-blue-800 rounded">Corrections (30%)</span>
                           </div>
                         </div>
-                        
-                        <div>
-                          <p className="font-medium text-gray-700 mb-2">After Student Errors:</p>
-                          <div className="flex space-x-1 items-center">
-                            <div className="w-20 h-6 bg-blue-500 rounded-l flex items-center justify-center text-xs text-white">Humans</div>
-                            <div className="flex-1 bg-gray-100 p-2 text-sm text-gray-700">
-                              Scaffold (52%) → Correct (28%) → Ask for clarification (20%)
-                            </div>
+                        <div className="relative h-6 bg-gray-100 rounded-full overflow-hidden">
+                          <div 
+                            className="absolute inset-y-0 left-0 bg-blue-500 rounded-l-full" 
+                            style={{ width: '60%' }}
+                            aria-label="Hints percentage: 60%"
+                            role="img"
+                          ></div>
+                          <div 
+                            className="absolute inset-y-0 left-[60%] bg-blue-300" 
+                            style={{ width: '30%' }}
+                            aria-label="Corrections percentage: 30%"
+                            role="img"
+                          ></div>
+                          <div 
+                            className="absolute inset-y-0 left-[90%] bg-blue-200" 
+                            style={{ width: '10%' }}
+                            aria-label="Other responses percentage: 10%"
+                            role="img"
+                          ></div>
+                        </div>
+                        <div className="mt-1 text-xs text-gray-500 italic ml-2">
+                          Focused strategy: guide toward correct answer or address misconceptions
+                        </div>
+                      </div>
+                      
+                      <div className="mb-2">
+                        <div className="flex justify-between items-center mb-1">
+                          <div className="text-sm font-medium text-gray-700">Student Questions →</div>
+                          <div className="flex items-center space-x-1">
+                            <span className="text-xs px-2 py-0.5 bg-blue-100 text-blue-800 rounded">Hints (76%)</span>
                           </div>
-                          <div className="mt-2 flex space-x-1 items-center">
-                            <div className="w-20 h-6 bg-purple-600 rounded-l flex items-center justify-center text-xs text-white">LLMs</div>
-                            <div className="flex-1 bg-gray-100 p-2 text-sm text-gray-700">
-                              Correct with explanation (68%) → Scaffold (27%) → Ask for reflection (5%)
-                            </div>
-                          </div>
+                        </div>
+                        <div className="relative h-6 bg-gray-100 rounded-full overflow-hidden">
+                          <div 
+                            className="absolute inset-y-0 left-0 bg-blue-500 rounded-l-full" 
+                            style={{ width: '76%' }}
+                            aria-label="Hints percentage: 76%"
+                            role="img"
+                          ></div>
+                          <div 
+                            className="absolute inset-y-0 left-[76%] bg-blue-300" 
+                            style={{ width: '14%' }}
+                            aria-label="Questions percentage: 14%"
+                            role="img"
+                          ></div>
+                          <div 
+                            className="absolute inset-y-0 left-[90%] bg-blue-200" 
+                            style={{ width: '10%' }}
+                            aria-label="Other responses percentage: 10%"
+                            role="img"
+                          ></div>
+                        </div>
+                        <div className="mt-1 text-xs text-gray-500 italic ml-2">
+                          Preference for scaffolded guidance over direct answers
                         </div>
                       </div>
                     </div>
-                  </div>
-                  
-                  <div className="mt-4 p-4 bg-purple-50 rounded-lg">
-                    <h4 className="font-medium text-purple-800 mb-2">Key Transition Differences</h4>
-                    <ul className="space-y-2 text-sm text-gray-700">
-                      <li className="flex items-start">
-                        <span className="text-purple-600 mr-2">•</span>
-                        <span>Human tutors more frequently use consecutive scaffolding moves</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-purple-600 mr-2">•</span>
-                        <span>LLMs more often follow questions with comprehensive explanations</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-purple-600 mr-2">•</span>
-                        <span>Human tutors show more variation in response to similar contexts</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-purple-600 mr-2">•</span>
-                        <span>LLMs demonstrate stronger tendencies toward fixed response sequences</span>
-                      </li>
-                    </ul>
                   </div>
                 </div>
                 
                 <div>
-                  <h3 className="text-xl font-semibold mb-3 text-purple-800">Flow Visualization</h3>
+                  <div className="bg-purple-50 p-4 rounded-lg border border-purple-100 mb-4">
+                    <h4 className="font-medium text-purple-800 mb-2">Model-Specific Response Patterns</h4>
+                    <p className="text-gray-700 text-sm mb-3">
+                      While maintaining some basic alignment with human strategies, each AI model shows characteristic response patterns:
+                    </p>
+                    <div className="grid grid-cols-1 gap-3">
+                      <div className="bg-white p-3 rounded border border-purple-100">
+                        <h5 className="text-sm font-medium text-purple-900 mb-1 flex items-center">
+                          <span className="w-3 h-3 bg-amber-400 rounded-full mr-2"></span>
+                          LLaMA 3.1
+                        </h5>
+                        <p className="text-xs text-gray-600">
+                          Uses corrections more uniformly across different student actions; less responsive to specific action types
+                        </p>
+                      </div>
+                      <div className="bg-white p-3 rounded border border-purple-100">
+                        <h5 className="text-sm font-medium text-purple-900 mb-1 flex items-center">
+                          <span className="w-3 h-3 bg-green-400 rounded-full mr-2"></span>
+                          GPT-4o
+                        </h5>
+                        <p className="text-xs text-gray-600">
+                          Stronger tendency to respond to questions with hints but maintains more varied responses to guesses
+                        </p>
+                      </div>
+                      <div className="bg-white p-3 rounded border border-purple-100">
+                        <h5 className="text-sm font-medium text-purple-900 mb-1 flex items-center">
+                          <span className="w-3 h-3 bg-indigo-400 rounded-full mr-2"></span>
+                          Gemini Pro 1.5
+                        </h5>
+                        <p className="text-xs text-gray-600">
+                          Similar to GPT-4o for questions but with more distributed pattern of corrections to different action types
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                   
-                  <div className="bg-white p-4 border border-gray-200 rounded-lg">
-                    <div className="flex justify-center mb-4">
-                      <div className="space-x-4 flex">
-                        <div className="w-24 text-center">
-                          <div className="h-12 w-12 rounded-full bg-blue-100 border-2 border-blue-500 flex items-center justify-center mx-auto">
-                            <span className="text-sm font-medium text-blue-700">S</span>
-                          </div>
-                          <p className="text-xs mt-1 text-gray-600">Student</p>
-                        </div>
-                        
-                        <div className="w-24 text-center">
-                          <div className="h-12 w-12 rounded-full bg-purple-100 border-2 border-purple-600 flex items-center justify-center mx-auto">
-                            <span className="text-sm font-medium text-purple-700">T</span>
-                          </div>
-                          <p className="text-xs mt-1 text-gray-600">Tutor</p>
-                        </div>
-                      </div>
+                  <div className="bg-white p-2 rounded-lg border border-gray-200 shadow-sm">
+                    <div className="px-3 py-2 bg-purple-50 border-b border-purple-200 flex justify-between items-center">
+                      <h4 className="font-semibold text-purple-800">AI Tutor Response Distribution</h4>
                     </div>
                     
-                    <div className="relative h-64 border border-gray-200 rounded p-2">
-                      {/* Human flow visualization */}
-                      <div className="absolute left-4 top-2">
-                        <p className="text-xs font-medium text-blue-700">Human Tutoring Flow</p>
-                      </div>
-                      
-                      {/* This would ideally be an SVG or Canvas element with actual flow visualization */}
-                      <div className="h-full flex items-center justify-center">
-                        <div className="text-center">
-                          <svg width="240" height="160" viewBox="0 0 240 160">
-                            {/* Student node */}
-                            <circle cx="40" cy="40" r="15" fill="#EBF5FF" stroke="#3B82F6" strokeWidth="2"/>
-                            <text x="40" y="45" textAnchor="middle" fontSize="12" fill="#3B82F6">S</text>
-                            
-                            {/* Tutor nodes */}
-                            <circle cx="120" cy="40" r="15" fill="#F3E8FF" stroke="#9333EA" strokeWidth="2"/>
-                            <text x="120" y="45" textAnchor="middle" fontSize="12" fill="#9333EA">T1</text>
-                            
-                            <circle cx="200" cy="40" r="15" fill="#F3E8FF" stroke="#9333EA" strokeWidth="2"/>
-                            <text x="200" y="45" textAnchor="middle" fontSize="12" fill="#9333EA">T2</text>
-                            
-                            <circle cx="80" cy="100" r="15" fill="#F3E8FF" stroke="#9333EA" strokeWidth="2"/>
-                            <text x="80" y="105" textAnchor="middle" fontSize="12" fill="#9333EA">T3</text>
-                            
-                            <circle cx="160" cy="100" r="15" fill="#F3E8FF" stroke="#9333EA" strokeWidth="2"/>
-                            <text x="160" y="105" textAnchor="middle" fontSize="12" fill="#9333EA">T4</text>
-                            
-                            {/* Student nodes */}
-                            <circle cx="40" cy="120" r="15" fill="#EBF5FF" stroke="#3B82F6" strokeWidth="2"/>
-                            <text x="40" y="125" textAnchor="middle" fontSize="12" fill="#3B82F6">S</text>
-                            
-                            <circle cx="200" cy="120" r="15" fill="#EBF5FF" stroke="#3B82F6" strokeWidth="2"/>
-                            <text x="200" y="125" textAnchor="middle" fontSize="12" fill="#3B82F6">S</text>
-                            
-                            {/* Arrows */}
-                            <line x1="55" y1="40" x2="105" y2="40" stroke="#3B82F6" strokeWidth="2"/>
-                            <polygon points="105,40 100,35 100,45" fill="#3B82F6"/>
-                            
-                            <line x1="135" y1="40" x2="185" y2="40" stroke="#9333EA" strokeWidth="2"/>
-                            <polygon points="185,40 180,35 180,45" fill="#9333EA"/>
-                            
-                            <line x1="190" y1="50" x2="90" y2="90" stroke="#9333EA" strokeWidth="2"/>
-                            <polygon points="90,90 95,85 97,95" fill="#9333EA"/>
-                            
-                            <line x1="95" y1="100" x2="145" y2="100" stroke="#9333EA" strokeWidth="2"/>
-                            <polygon points="145,100 140,95 140,105" fill="#9333EA"/>
-                            
-                            <line x1="65" y1="100" x2="55" y2="112" stroke="#9333EA" strokeWidth="2"/>
-                            <polygon points="55,112 55,105 62,111" fill="#9333EA"/>
-                            
-                            <line x1="175" y1="100" x2="185" y2="112" stroke="#9333EA" strokeWidth="2"/>
-                            <polygon points="185,112 185,105 178,111" fill="#9333EA"/>
-                          </svg>
-                          <p className="text-xs text-gray-500 mt-2">Complex, branching interaction patterns</p>
+                    <div className="p-4">
+                      <div className="mb-5">
+                        <div className="flex justify-between items-center mb-1">
+                          <div className="text-sm font-medium text-gray-700">Student Guesses →</div>
+                          <div className="flex items-center space-x-1">
+                            <span className="text-xs px-2 py-0.5 bg-purple-100 text-purple-800 rounded">Hints (40%)</span>
+                            <span className="text-xs px-2 py-0.5 bg-purple-100 text-purple-800 rounded">Corrections (40%)</span>
+                          </div>
+                        </div>
+                        <div className="relative h-6 bg-gray-100 rounded-full overflow-hidden">
+                          <div 
+                            className="absolute inset-y-0 left-0 bg-purple-500 rounded-l-full" 
+                            style={{ width: '40%' }}
+                            aria-label="Hints percentage: 40%"
+                            role="img"
+                          ></div>
+                          <div 
+                            className="absolute inset-y-0 left-[40%] bg-purple-400" 
+                            style={{ width: '40%' }}
+                            aria-label="Corrections percentage: 40%"
+                            role="img"
+                          ></div>
+                          <div 
+                            className="absolute inset-y-0 left-[80%] bg-purple-300" 
+                            style={{ width: '20%' }}
+                            aria-label="Other responses percentage: 20%"
+                            role="img"
+                          ></div>
+                        </div>
+                        <div className="mt-1 text-xs text-gray-500 italic ml-2">
+                          Less distinct mappings, more balanced distribution of response types
                         </div>
                       </div>
-                    </div>
-                    
-                    <div className="relative h-64 mt-4 border border-gray-200 rounded p-2">
-                      {/* LLM flow visualization */}
-                      <div className="absolute left-4 top-2">
-                        <p className="text-xs font-medium text-purple-700">LLM Tutoring Flow</p>
-                      </div>
                       
-                      {/* This would ideally be an SVG or Canvas element with actual flow visualization */}
-                      <div className="h-full flex items-center justify-center">
-                        <div className="text-center">
-                          <svg width="240" height="160" viewBox="0 0 240 160">
-                            {/* Student node */}
-                            <circle cx="40" cy="40" r="15" fill="#EBF5FF" stroke="#3B82F6" strokeWidth="2"/>
-                            <text x="40" y="45" textAnchor="middle" fontSize="12" fill="#3B82F6">S</text>
-                            
-                            {/* Tutor nodes */}
-                            <circle cx="120" cy="40" r="15" fill="#F3E8FF" stroke="#9333EA" strokeWidth="2"/>
-                            <text x="120" y="45" textAnchor="middle" fontSize="12" fill="#9333EA">T1</text>
-                            
-                            <circle cx="200" cy="40" r="15" fill="#F3E8FF" stroke="#9333EA" strokeWidth="2"/>
-                            <text x="200" y="45" textAnchor="middle" fontSize="12" fill="#9333EA">T2</text>
-                            
-                            <circle cx="120" cy="100" r="15" fill="#F3E8FF" stroke="#9333EA" strokeWidth="2"/>
-                            <text x="120" y="105" textAnchor="middle" fontSize="12" fill="#9333EA">T3</text>
-                            
-                            <circle cx="200" cy="100" r="15" fill="#F3E8FF" stroke="#9333EA" strokeWidth="2"/>
-                            <text x="200" y="105" textAnchor="middle" fontSize="12" fill="#9333EA">T4</text>
-                            
-                            {/* Student nodes */}
-                            <circle cx="40" cy="100" r="15" fill="#EBF5FF" stroke="#3B82F6" strokeWidth="2"/>
-                            <text x="40" y="105" textAnchor="middle" fontSize="12" fill="#3B82F6">S</text>
-                            
-                            <circle cx="120" cy="160" r="15" fill="#EBF5FF" stroke="#3B82F6" strokeWidth="2"/>
-                            <text x="120" y="165" textAnchor="middle" fontSize="12" fill="#3B82F6">S</text>
-                            
-                            {/* Arrows */}
-                            <line x1="55" y1="40" x2="105" y2="40" stroke="#3B82F6" strokeWidth="2"/>
-                            <polygon points="105,40 100,35 100,45" fill="#3B82F6"/>
-                            
-                            <line x1="135" y1="40" x2="185" y2="40" stroke="#9333EA" strokeWidth="2"/>
-                            <polygon points="185,40 180,35 180,45" fill="#9333EA"/>
-                            
-                            <line x1="200" y1="55" x2="200" y2="85" stroke="#9333EA" strokeWidth="2"/>
-                            <polygon points="200,85 195,80 205,80" fill="#9333EA"/>
-                            
-                            <line x1="185" y1="100" x2="135" y2="100" stroke="#9333EA" strokeWidth="2"/>
-                            <polygon points="135,100 140,95 140,105" fill="#9333EA"/>
-                            
-                            <line x1="105" y1="100" x2="55" y2="100" stroke="#9333EA" strokeWidth="2"/>
-                            <polygon points="55,100 60,95 60,105" fill="#9333EA"/>
-                            
-                            <line x1="120" y1="115" x2="120" y2="145" stroke="#9333EA" strokeWidth="2"/>
-                            <polygon points="120,145 115,140 125,140" fill="#9333EA"/>
-                          </svg>
-                          <p className="text-xs text-gray-500 mt-2">More linear, structured interaction patterns</p>
+                      <div className="mb-2">
+                        <div className="flex justify-between items-center mb-1">
+                          <div className="text-sm font-medium text-gray-700">Student Questions →</div>
+                          <div className="flex items-center space-x-1">
+                            <span className="text-xs px-2 py-0.5 bg-purple-100 text-purple-800 rounded">Hints/Explanations (83%)</span>
+                          </div>
+                        </div>
+                        <div className="relative h-6 bg-gray-100 rounded-full overflow-hidden">
+                          <div 
+                            className="absolute inset-y-0 left-0 bg-purple-500 rounded-l-full" 
+                            style={{ width: '83%' }}
+                            aria-label="Hints percentage: 83%"
+                            role="img"
+                          ></div>
+                          <div 
+                            className="absolute inset-y-0 left-[83%] bg-purple-300" 
+                            style={{ width: '17%' }}
+                            aria-label="Other responses percentage: 17%"
+                            role="img"
+                          ></div>
+                        </div>
+                        <div className="mt-1 text-xs text-gray-500 italic ml-2">
+                          Similar to humans for questions, but with more elaborate explanations
                         </div>
                       </div>
                     </div>
@@ -557,342 +571,19 @@ const ResultsSlideTemplate = ({ currentSubsection = 'distribution', updateCurren
               
               <div className="mt-6 p-4 bg-gray-100 rounded-lg">
                 <p className="text-gray-700">
-                  <span className="font-medium">Research insight:</span> The analysis of interaction flows reveals that while LLMs appear to offer fluid interfaces, they actually exhibit more predictable and less adaptable sequential patterns than human tutors. This suggests the emergence of fixed behavioral patterns despite the seeming flexibility of LLM interactions.
+                  <span className="font-medium">Key insight:</span> While language models can engage in fluid, natural conversation, they exhibit characteristic response patterns distinct from human teaching strategies. These differences raise important questions about whether such variations reflect meaningful pedagogical choices or are artifacts of the models' underlying architectures and training approaches.
                 </p>
+              </div>
+              
+              <div className="mt-4 flex justify-end">
+                <div className="text-xs text-gray-500 italic">
+                  Based on analysis of CIMA dataset and LLM-generated tutoring responses
+                </div>
               </div>
             </div>
           </div>
         )
-      },
-    {
-      title: "Model-Specific Styles",
-      content: (
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-          <div className="bg-purple-700 px-6 py-4">
-            <h2 className="text-2xl font-bold text-white">Model-Specific Styles</h2>
-            <p className="text-purple-100 text-lg">Comparing tutoring approaches across models</p>
-          </div>
-          
-          <div className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-gradient-to-b from-blue-50 to-blue-100 rounded-lg shadow overflow-hidden">
-                <div className="bg-blue-600 px-4 py-3">
-                  <h3 className="text-lg font-semibold text-white">GPT-4o</h3>
-                </div>
-                
-                <div className="p-4">
-                  <div className="space-y-3">
-                    <div className="flex items-start">
-                      <div className="flex-shrink-0 w-5 h-5 mt-0.5 text-blue-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <p className="ml-2 text-sm text-gray-700">
-                        <span className="font-medium">Balanced approach</span> with high emphasis on detailed explanations
-                      </p>
-                    </div>
-                    
-                    <div className="flex items-start">
-                      <div className="flex-shrink-0 w-5 h-5 mt-0.5 text-blue-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <p className="ml-2 text-sm text-gray-700">
-                        <span className="font-medium">Higher use of analogies</span> and real-world contexts
-                      </p>
-                    </div>
-                    
-                    <div className="flex items-start">
-                      <div className="flex-shrink-0 w-5 h-5 mt-0.5 text-blue-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <p className="ml-2 text-sm text-gray-700">
-                        <span className="font-medium">More personalized</span> language and response adaptation
-                      </p>
-                    </div>
-                    
-                    <div className="flex items-start">
-                      <div className="flex-shrink-0 w-5 h-5 mt-0.5 text-blue-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <p className="ml-2 text-sm text-gray-700">
-                        <span className="font-medium">Strategic questioning</span> to guide student discovery
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="mt-4 pt-3 border-t border-blue-200">
-                    <div className="flex items-center">
-                      <div className="w-24 text-xs font-medium text-gray-500">Explanation</div>
-                      <div className="flex-1 h-3 bg-gray-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-blue-500" style={{ width: '62%' }}></div>
-                      </div>
-                    </div>
-                    <div className="flex items-center mt-1">
-                      <div className="w-24 text-xs font-medium text-gray-500">Scaffolding</div>
-                      <div className="flex-1 h-3 bg-gray-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-blue-500" style={{ width: '28%' }}></div>
-                      </div>
-                    </div>
-                    <div className="flex items-center mt-1">
-                      <div className="w-24 text-xs font-medium text-gray-500">Feedback</div>
-                      <div className="flex-1 h-3 bg-gray-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-blue-500" style={{ width: '44%' }}></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-gradient-to-b from-emerald-50 to-emerald-100 rounded-lg shadow overflow-hidden">
-                <div className="bg-emerald-600 px-4 py-3">
-                  <h3 className="text-lg font-semibold text-white">Gemini Pro 1.5</h3>
-                </div>
-                
-                <div className="p-4">
-                  <div className="space-y-3">
-                    <div className="flex items-start">
-                      <div className="flex-shrink-0 w-5 h-5 mt-0.5 text-emerald-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <p className="ml-2 text-sm text-gray-700">
-                        <span className="font-medium">Visualization-focused</span> with strong emphasis on examples
-                      </p>
-                    </div>
-                    
-                    <div className="flex items-start">
-                      <div className="flex-shrink-0 w-5 h-5 mt-0.5 text-emerald-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <p className="ml-2 text-sm text-gray-700">
-                        <span className="font-medium">More structured scaffolding</span> with step-by-step approaches
-                      </p>
-                    </div>
-                    
-                    <div className="flex items-start">
-                      <div className="flex-shrink-0 w-5 h-5 mt-0.5 text-emerald-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <p className="ml-2 text-sm text-gray-700">
-                        <span className="font-medium">Pattern-focused learning</span> with clear rule statements
-                      </p>
-                    </div>
-                    
-                    <div className="flex items-start">
-                      <div className="flex-shrink-0 w-5 h-5 mt-0.5 text-emerald-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <p className="ml-2 text-sm text-gray-700">
-                        <span className="font-medium">Less personalized</span> but highly consistent response structure
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="mt-4 pt-3 border-t border-emerald-200">
-                    <div className="flex items-center">
-                      <div className="w-24 text-xs font-medium text-gray-500">Explanation</div>
-                      <div className="flex-1 h-3 bg-gray-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500" style={{ width: '58%' }}></div>
-                      </div>
-                    </div>
-                    <div className="flex items-center mt-1">
-                      <div className="w-24 text-xs font-medium text-gray-500">Scaffolding</div>
-                      <div className="flex-1 h-3 bg-gray-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500" style={{ width: '35%' }}></div>
-                      </div>
-                    </div>
-                    <div className="flex items-center mt-1">
-                      <div className="w-24 text-xs font-medium text-gray-500">Feedback</div>
-                      <div className="flex-1 h-3 bg-gray-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500" style={{ width: '40%' }}></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-gradient-to-b from-amber-50 to-amber-100 rounded-lg shadow overflow-hidden">
-                <div className="bg-amber-600 px-4 py-3">
-                  <h3 className="text-lg font-semibold text-white">LLaMA 3.1 405B</h3>
-                </div>
-                
-                <div className="p-4">
-                  <div className="space-y-3">
-                    <div className="flex items-start">
-                      <div className="flex-shrink-0 w-5 h-5 mt-0.5 text-amber-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <p className="ml-2 text-sm text-gray-700">
-                        <span className="font-medium">Heavy explanation focus</span> with comprehensive concept coverage
-                      </p>
-                    </div>
-                    
-                    <div className="flex items-start">
-                      <div className="flex-shrink-0 w-5 h-5 mt-0.5 text-amber-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <p className="ml-2 text-sm text-gray-700">
-                        <span className="font-medium">More direct feedback</span> with explicit correctness judgments
-                      </p>
-                    </div>
-                    
-                    <div className="flex items-start">
-                      <div className="flex-shrink-0 w-5 h-5 mt-0.5 text-amber-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <p className="ml-2 text-sm text-gray-700">
-                        <span className="font-medium">Lower social presence</span> with fewer encouragement elements
-                      </p>
-                    </div>
-                    
-                    <div className="flex items-start">
-                      <div className="flex-shrink-0 w-5 h-5 mt-0.5 text-amber-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <p className="ml-2 text-sm text-gray-700">
-                        <span className="font-medium">Rule-oriented approach</span> with more formal linguistic style
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="mt-4 pt-3 border-t border-amber-200">
-                    <div className="flex items-center">
-                      <div className="w-24 text-xs font-medium text-gray-500">Explanation</div>
-                      <div className="flex-1 h-3 bg-gray-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-amber-500" style={{ width: '75%' }}></div>
-                      </div>
-                    </div>
-                    <div className="flex items-center mt-1">
-                      <div className="w-24 text-xs font-medium text-gray-500">Scaffolding</div>
-                      <div className="flex-1 h-3 bg-gray-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-amber-500" style={{ width: '18%' }}></div>
-                      </div>
-                    </div>
-                    <div className="flex items-center mt-1">
-                      <div className="w-24 text-xs font-medium text-gray-500">Feedback</div>
-                      <div className="flex-1 h-3 bg-gray-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-amber-500" style={{ width: '48%' }}></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="mt-6">
-              <h3 className="text-xl font-semibold mb-4 text-purple-800">Comparative Analysis</h3>
-              
-              <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Feature
-                      </th>
-                      <th className="px-4 py-3 text-left text-xs font-medium text-blue-500 uppercase tracking-wider">
-                        GPT-4o
-                      </th>
-                      <th className="px-4 py-3 text-left text-xs font-medium text-emerald-500 uppercase tracking-wider">
-                        Gemini Pro 1.5
-                      </th>
-                      <th className="px-4 py-3 text-left text-xs font-medium text-amber-500 uppercase tracking-wider">
-                        LLaMA 3.1 405B
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
-                    <tr>
-                      <td className="px-4 py-3 text-sm text-gray-700">
-                        Response length
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-500">
-                        145 words avg.
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-500">
-                        132 words avg.
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-500">
-                        156 words avg.
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="px-4 py-3 text-sm text-gray-700">
-                        Example usage
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-500">
-                        Diverse, contextualized
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-500">
-                        Visual, patterned
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-500">
-                        Abundant, rule-oriented
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="px-4 py-3 text-sm text-gray-700">
-                        Social presence
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-500">
-                        High
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-500">
-                        Medium
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-500">
-                        Low
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="px-4 py-3 text-sm text-gray-700">
-                        Adaptability
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-500">
-                        Higher
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-500">
-                        Medium
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-500">
-                        Lower
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            
-            <div className="mt-6 p-4 bg-gray-100 rounded-lg">
-              <p className="text-gray-700">
-                <span className="font-medium">Research insight:</span> Despite training on similar data, each model exhibits distinctive &quot;personalities&quot; in tutoring. These fixed behavioral patterns suggest that even state-of-the-art LLMs develop consistent tutoring styles that differ from human approaches, creating a form of QWERTY phenomenon in AI tutoring where certain patterns become entrenched through statistical learning rather than deliberate design.
-              </p>
-            </div>
-          </div>
-        </div>
-      )
-    }
+      }
   ];
 
   return (
