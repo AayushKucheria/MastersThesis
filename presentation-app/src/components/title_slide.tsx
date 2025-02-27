@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 /**
  * Clean, focused title slide that matches the presentation design pattern
@@ -12,8 +13,15 @@ const TitleSlideTemplate = () => {
       <div className="p-8 flex flex-col items-center justify-center min-h-[36rem]">
         <div className="max-w-4xl w-full text-center">
           {/* Logo/University affiliation */}
-          <div className="mb-8">
-            <img src="/aalto_logo.png" alt="Aalto University" className="h-16 mx-auto" />
+          <div className="mb-8 relative h-16">
+            <Image 
+              src="/aalto_logo.png" 
+              alt="Aalto University" 
+              width={160}
+              height={64}
+              className="mx-auto"
+              priority
+            />
           </div>
 
           {/* Main title with enhanced hierarchy */}

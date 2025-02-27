@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import TitleSlideTemplate from "@/components/title_slide";
 import IntroductionSlideTemplate from "@/components/introduction_slide";
 import TheorySlideTemplate from "@/components/theory_slide";
@@ -29,7 +29,9 @@ export default function Home() {
   const [activeSubsection, setActiveSubsection] = useState<string>('main');
   
   // Define the slide order for navigation (main sections)
-  const slideOrder: SlideSection[] = ['title', 'introduction', 'theory', 'methodology', 'results', 'discussion', 'conclusion'];
+  const slideOrder = useMemo<SlideSection[]>(() => 
+    ['title', 'introduction', 'theory', 'methodology', 'results', 'discussion', 'conclusion']
+  , []);
   
   // Function to navigate to the next slide or subsection
   const goToNextSlide = useCallback(() => {

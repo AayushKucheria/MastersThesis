@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 // Define the props interface for the component
 interface TheorySlideProps {
@@ -10,20 +10,20 @@ interface TheorySlideProps {
 
 const TheorySlideTemplate = ({ currentSubsection = 'evolution', updateCurrentSubsection }: TheorySlideProps) => {
   // Map subsection IDs to slide indices
-  const subsectionMap = {
+  const subsectionMap = useMemo(() => ({
     'evolution': 0,
     'qwerty': 1,
     'tools-to-mediums': 2,
     'llms-education': 3
-  };
+  }), []);
   
   // Reverse map to get subsection from index
-  const indexToSubsectionMap = {
+  const indexToSubsectionMap = useMemo(() => ({
     0: 'evolution',
     1: 'qwerty',
     2: 'tools-to-mediums',
     3: 'llms-education'
-  };
+  }), []);
   
   // Set the current slide based on the subsection prop
   const [currentSlide, setCurrentSlide] = useState(subsectionMap[currentSubsection as keyof typeof subsectionMap] || 0);
@@ -34,7 +34,7 @@ const TheorySlideTemplate = ({ currentSubsection = 'evolution', updateCurrentSub
     if (slideIndex !== undefined) {
       setCurrentSlide(slideIndex);
     }
-  }, [currentSubsection]);
+  }, [currentSubsection, subsectionMap]);
   
   // Function to handle slide changes
   const handleSlideChange = (index: number) => {

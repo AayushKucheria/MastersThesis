@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 // Define the props interface for the component
 interface ResultsSlideProps {
@@ -10,20 +10,20 @@ interface ResultsSlideProps {
 
 const ResultsSlideTemplate = ({ currentSubsection = 'distribution', updateCurrentSubsection }: ResultsSlideProps) => {
   // Map subsection IDs to slide indices
-  const subsectionMap = {
+  const subsectionMap = useMemo(() => ({
     'distribution': 0,
     'complexity': 1,
     'flows': 2,
     'model-styles': 3
-  };
+  }), []);
   
   // Reverse map to get subsection from index
-  const indexToSubsectionMap = {
+  const indexToSubsectionMap = useMemo(() => ({
     0: 'distribution',
     1: 'complexity',
     2: 'flows',
     3: 'model-styles'
-  };
+  }), []);
   
   // Set the current slide based on the subsection prop
   const [currentSlide, setCurrentSlide] = useState(subsectionMap[currentSubsection as keyof typeof subsectionMap] || 0);
@@ -34,7 +34,7 @@ const ResultsSlideTemplate = ({ currentSubsection = 'distribution', updateCurren
     if (slideIndex !== undefined) {
       setCurrentSlide(slideIndex);
     }
-  }, [currentSubsection]);
+  }, [currentSubsection, subsectionMap]);
 
   // Function to handle slide changes
   const handleSlideChange = (index: number) => {
@@ -886,7 +886,7 @@ const ResultsSlideTemplate = ({ currentSubsection = 'distribution', updateCurren
             
             <div className="mt-6 p-4 bg-gray-100 rounded-lg">
               <p className="text-gray-700">
-                <span className="font-medium">Research insight:</span> Despite training on similar data, each model exhibits distinctive "personalities" in tutoring. These fixed behavioral patterns suggest that even state-of-the-art LLMs develop consistent tutoring styles that differ from human approaches, creating a form of QWERTY phenomenon in AI tutoring where certain patterns become entrenched through statistical learning rather than deliberate design.
+                <span className="font-medium">Research insight:</span> Despite training on similar data, each model exhibits distinctive &quot;personalities&quot; in tutoring. These fixed behavioral patterns suggest that even state-of-the-art LLMs develop consistent tutoring styles that differ from human approaches, creating a form of QWERTY phenomenon in AI tutoring where certain patterns become entrenched through statistical learning rather than deliberate design.
               </p>
             </div>
           </div>
