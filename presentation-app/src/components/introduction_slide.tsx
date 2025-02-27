@@ -28,11 +28,12 @@ const IntroductionSlideTemplate = ({ currentSubsection = 'focus', updateCurrentS
   
   // Update the current slide when the subsection prop changes
   useEffect(() => {
+    // Set the current subsection in the slide based on the prop
     const slideIndex = subsectionMap[currentSubsection as keyof typeof subsectionMap];
     if (slideIndex !== undefined) {
       setCurrentSlide(slideIndex);
     }
-  }, [currentSubsection]);
+  }, [currentSubsection, subsectionMap]);
   
   // Function to handle slide changes
   const handleSlideChange = (index: number) => {

@@ -117,7 +117,7 @@ export default function Home() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [activeSlide, activeSubsection]); // Re-add the listener when active slide or subsection changes
+  }, [activeSlide, activeSubsection, goToNextSlide, goToPreviousSlide]); // Include all required dependencies
   
   // Check if we're at the first slide overall
   const isFirstSlide = activeSlide === slideOrder[0] && 

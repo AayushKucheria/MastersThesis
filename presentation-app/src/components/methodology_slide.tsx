@@ -32,7 +32,7 @@ const MethodologySlideTemplate = ({ currentSubsection = 'dataset', updateCurrent
     if (slideIndex !== undefined) {
       setCurrentSlide(slideIndex);
     }
-  }, [currentSubsection]);
+  }, [currentSubsection, subsectionMap]);
   
   // Function to handle slide changes
   const handleSlideChange = (index: number) => {
@@ -78,7 +78,7 @@ const MethodologySlideTemplate = ({ currentSubsection = 'dataset', updateCurrent
                 <h3 className="text-xl font-semibold mb-3 text-green-800">Sample Interaction</h3>
                 <div className="space-y-3">
                   <div className="bg-gray-100 p-3 rounded-lg">
-                    <div className="text-sm font-medium mb-1">Exercise: Translate "I'm going to the store"</div>
+                    <div className="text-sm font-medium mb-1">Exercise: Translate &quot;I&apos;m going to the store&quot;</div>
                   </div>
                   
                   <div className="bg-blue-50 p-3 rounded-lg">

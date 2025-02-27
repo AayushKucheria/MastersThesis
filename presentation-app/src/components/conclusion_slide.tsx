@@ -30,7 +30,7 @@ const ConclusionSlideTemplate = ({ currentSubsection = 'findings', updateCurrent
     if (slideIndex !== undefined) {
       setCurrentSlide(slideIndex);
     }
-  }, [currentSubsection]);
+  }, [currentSubsection, subsectionMap]);
   
   // Function to handle slide changes
   const handleSlideChange = (index: number) => {

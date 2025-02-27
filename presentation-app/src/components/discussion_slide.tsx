@@ -32,7 +32,7 @@ const DiscussionSlideTemplate = ({ currentSubsection = 'theoretical', updateCurr
     if (slideIndex !== undefined) {
       setCurrentSlide(slideIndex);
     }
-  }, [currentSubsection]);
+  }, [currentSubsection, subsectionMap]);
   
   // Function to handle slide changes
   const handleSlideChange = (index: number) => {
@@ -71,7 +71,7 @@ const DiscussionSlideTemplate = ({ currentSubsection = 'theoretical', updateCurr
                   </li>
                   <li className="flex items-start">
                     <span className="text-teal-600 mr-2 font-bold">•</span>
-                    <span><span className="font-medium">Statistical vs. cognitive scaffolding</span>: LLMs' patterns reflect statistical regularities rather than pedagogical theory</span>
+                    <span><span className="font-medium">Statistical vs. cognitive scaffolding</span>: LLMs&apos; patterns reflect statistical regularities rather than pedagogical theory</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-teal-600 mr-2 font-bold">•</span>
@@ -93,14 +93,14 @@ const DiscussionSlideTemplate = ({ currentSubsection = 'theoretical', updateCurr
                   <div className="bg-gray-50 p-3 rounded-lg">
                     <div className="font-medium text-teal-700">Zone of Proximal Development</div>
                     <p className="text-sm mt-1">
-                      Human tutors' preference for simpler interactions may better align with Vygotsky's ZPD theory, which suggests learning is optimized through targeted guidance within the learner's current capabilities.
+                      Human tutors&apos; preference for simpler interactions may better align with Vygotsky&apos;s ZPD theory, which suggests learning is optimized through targeted guidance within the learner&apos;s current capabilities.
                     </p>
                   </div>
                   
                   <div className="bg-gray-50 p-3 rounded-lg">
                     <div className="font-medium text-teal-700">Medium vs. Tool Paradigm</div>
                     <p className="text-sm mt-1">
-                      While LLMs' flexibility suggests potential as a medium for exploration, their fixed response patterns reveal aspects still operating within the tool paradigm.
+                      While LLMs&apos; flexibility suggests potential as a medium for exploration, their fixed response patterns reveal aspects still operating within the tool paradigm.
                     </p>
                   </div>
                 </div>
