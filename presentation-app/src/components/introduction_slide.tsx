@@ -60,15 +60,15 @@ const IntroductionSlideTemplate = ({ currentSubsection = 'focus', updateCurrentS
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-start">
                     <span className="text-blue-600 mr-2">•</span>
-                    <span>Examining behavioral patterns in LLM tutoring interactions</span>
+                    <span>LLM tutoring behavior patterns</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-blue-600 mr-2">•</span>
-                    <span>Comparing AI tutoring patterns with human tutoring approaches</span>
+                    <span>Comparison with human tutoring approaches</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-blue-600 mr-2">•</span>
-                    <span>Identifying systematic interaction differences rather than focusing on learning outcomes</span>
+                    <span>Systematic interaction differences vs. outcomes</span>
                   </li>
                 </ul>
               </div>
@@ -78,15 +78,15 @@ const IntroductionSlideTemplate = ({ currentSubsection = 'focus', updateCurrentS
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-start">
                     <span className="text-blue-600 mr-2">•</span>
-                    <span>LLMs represent a paradigm shift in educational technology with unprecedented natural language capabilities</span>
+                    <span>LLMs: A paradigm shift in educational technology</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-blue-600 mr-2">•</span>
-                    <span>Understanding emergent patterns informs design of future AI tutoring systems</span>
+                    <span>Informs design of future AI tutoring systems</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-blue-600 mr-2">•</span>
-                    <span>Reveals tensions between surface-level fluidity and underlying fixed patterns</span>
+                    <span>Reveals tension between fluidity and fixed patterns</span>
                   </li>
                 </ul>
               </div>

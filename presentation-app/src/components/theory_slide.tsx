@@ -57,83 +57,199 @@ const TheorySlideTemplate = ({ currentSubsection = 'evolution', updateCurrentSub
           </div>
           
           <div className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="text-xl font-semibold mb-4 text-indigo-800">Historical Progression</h3>
-                <ul className="space-y-3">
-                  <li className="bg-gray-50 p-3 rounded-lg">
-                    <div className="font-medium text-indigo-700">1970s: Early Systems</div>
-                    <p className="text-sm mt-1">Carbonell's SCHOLAR (1970) - First computer-assisted instruction system with knowledge representation</p>
-                    <p className="text-xs text-gray-500 italic mt-1">Citation: Carbonell, J. R. (1970). AI in CAI: An artificial intelligence approach to computer-assisted instruction.</p>
-                  </li>
-                  <li className="bg-gray-50 p-3 rounded-lg">
-                    <div className="font-medium text-indigo-700">1980s: Knowledge-Based Systems</div>
-                    <p className="text-sm mt-1">GUIDON (Clancey, 1987) - Rule-based expert systems with explicit knowledge encoding</p>
-                    <p className="text-xs text-gray-500 italic mt-1">Citation: Clancey, W. J. (1987). Knowledge-based tutoring: The GUIDON program.</p>
-                  </li>
-                  <li className="bg-gray-50 p-3 rounded-lg">
-                    <div className="font-medium text-indigo-700">1990s - 2000s: Natural Dialog</div>
-                    <p className="text-sm mt-1">AutoTutor (Graesser et al., 1999) - First systems with natural language dialog capabilities</p>
-                    <p className="text-xs text-gray-500 italic mt-1">Citation: Graesser, A. C., Wiemer-Hastings, K., Wiemer-Hastings, P., & Kreuz, R. (1999). AutoTutor: A simulation of a human tutor.</p>
-                  </li>
-                  <li className="bg-gray-50 p-3 rounded-lg">
-                    <div className="font-medium text-indigo-700">2010s - Present: Neural Systems</div>
-                    <p className="text-sm mt-1">Shift from rule-based to statistical and neural approaches with less defined knowledge spaces</p>
-                    <p className="text-xs text-gray-500 italic mt-1">Citation: Roll, I., & Wylie, R. (2016). Evolution and revolution in artificial intelligence in education.</p>
-                  </li>
-                </ul>
-              </div>
+            {/* Timeline visualization */}
+            <div className="relative">
+              {/* Timeline line */}
+              <div className="absolute left-16 top-6 w-1 h-[420px] bg-indigo-200"></div>
               
-              <div>
-                <h3 className="text-xl font-semibold mb-4 text-indigo-800">Types of Constraints</h3>
-                <div className="mb-4 bg-indigo-50 p-4 rounded-lg">
-                  <h4 className="font-medium text-indigo-700 mb-2">Group 1: Technical Constraints</h4>
-                  <p className="text-sm text-gray-700">Limitations due to technological capabilities rather than pedagogical choices</p>
-                  <ul className="mt-2 text-sm space-y-1 text-gray-700">
-                    <li className="flex items-start">
-                      <span className="text-indigo-600 mr-2">→</span>
-                      <span>Limited natural language processing</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-indigo-600 mr-2">→</span>
-                      <span>Restricted knowledge representations</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-indigo-600 mr-2">→</span>
-                      <span>Narrow domain specificity</span>
-                    </li>
-                  </ul>
+              {/* Timeline entries */}
+              <div className="space-y-10">
+                {/* 1970s Entry */}
+                <div className="flex">
+                  <div className="w-32 pt-1 text-right pr-4 font-bold text-indigo-800">1970s</div>
+                  <div className="relative">
+                    {/* Circle marker */}
+                    <div className="absolute -left-3 w-6 h-6 rounded-full bg-indigo-600 border-4 border-white shadow-md"></div>
+                    {/* Content */}
+                    <div className="pl-8">
+                      <h3 className="text-lg font-medium text-indigo-800">Early Systems</h3>
+                      <div className="mt-2 bg-indigo-50 p-4 rounded-lg max-w-2xl">
+                        <div className="flex items-start">
+                          <div className="mr-3 mt-1">
+                            <div className="bg-indigo-100 rounded-full p-1">
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-indigo-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                              </svg>
+                            </div>
+                          </div>
+                          <div>
+                            <p className="text-gray-800"><span className="font-medium">SCHOLAR (Carbonell, 1970)</span> — First system with knowledge representation</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 
-                <div className="bg-indigo-50 p-4 rounded-lg">
-                  <h4 className="font-medium text-indigo-700 mb-2">Group 2: Pedagogical Constraints</h4>
-                  <p className="text-sm text-gray-700">Deliberate structures that enhance learning effectiveness</p>
-                  <ul className="mt-2 text-sm space-y-1 text-gray-700">
-                    <li className="flex items-start">
-                      <span className="text-indigo-600 mr-2">→</span>
-                      <span>Scaffolding strategies</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-indigo-600 mr-2">→</span>
-                      <span>Guided discovery approaches</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-indigo-600 mr-2">→</span>
-                      <span>Problem sequencing and difficulty progression</span>
-                    </li>
-                  </ul>
+                {/* 1980s Entry */}
+                <div className="flex">
+                  <div className="w-32 pt-1 text-right pr-4 font-bold text-indigo-800">1980s</div>
+                  <div className="relative">
+                    {/* Circle marker */}
+                    <div className="absolute -left-3 w-6 h-6 rounded-full bg-indigo-600 border-4 border-white shadow-md"></div>
+                    {/* Content */}
+                    <div className="pl-8">
+                      <h3 className="text-lg font-medium text-indigo-800">Knowledge-Based Systems</h3>
+                      <div className="mt-2 bg-indigo-50 p-4 rounded-lg max-w-2xl">
+                        <div className="flex items-start">
+                          <div className="mr-3 mt-1">
+                            <div className="bg-indigo-100 rounded-full p-1">
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-indigo-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                              </svg>
+                            </div>
+                          </div>
+                          <div>
+                            <p className="text-gray-800"><span className="font-medium">GUIDON (Clancey, 1987)</span> — Rule-based expert systems with explicit knowledge encoding</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* 1990s - 2000s Entry */}
+                <div className="flex">
+                  <div className="w-32 pt-1 text-right pr-4 font-bold text-indigo-800">1990s - 2000s</div>
+                  <div className="relative">
+                    {/* Circle marker */}
+                    <div className="absolute -left-3 w-6 h-6 rounded-full bg-indigo-600 border-4 border-white shadow-md"></div>
+                    {/* Content */}
+                    <div className="pl-8">
+                      <h3 className="text-lg font-medium text-indigo-800">Natural Dialog</h3>
+                      <div className="mt-2 bg-indigo-50 p-4 rounded-lg max-w-2xl">
+                        <div className="flex items-start">
+                          <div className="mr-3 mt-1">
+                            <div className="bg-indigo-100 rounded-full p-1">
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-indigo-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                              </svg>
+                            </div>
+                          </div>
+                          <div>
+                            <p className="text-gray-800"><span className="font-medium">AutoTutor (Graesser et al., 1999)</span> — First systems with natural language dialog capabilities</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* 2010s - Present Entry */}
+                <div className="flex">
+                  <div className="w-32 pt-1 text-right pr-4 font-bold text-indigo-800">2010s - Present</div>
+                  <div className="relative">
+                    {/* Circle marker */}
+                    <div className="absolute -left-3 w-6 h-6 rounded-full bg-indigo-600 border-4 border-white shadow-md"></div>
+                    {/* Content */}
+                    <div className="pl-8">
+                      <h3 className="text-lg font-medium text-indigo-800">Neural Systems</h3>
+                      <div className="mt-2 bg-indigo-50 p-4 rounded-lg max-w-2xl">
+                        <div className="flex items-start">
+                          <div className="mr-3 mt-1">
+                            <div className="bg-indigo-100 rounded-full p-1">
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-indigo-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                              </svg>
+                            </div>
+                          </div>
+                          <div>
+                            <p className="text-gray-800"><span className="font-medium">Shift from rule-based to statistical and neural approaches with less defined knowledge spaces</span></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
             
-            <div className="mt-6 bg-gray-100 p-4 rounded-lg">
-              <div className="flex items-start">
-                <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
-                  <span className="text-indigo-700 font-bold">!</span>
-                </div>
-                <p className="ml-3 text-gray-700">
-                  <span className="font-medium">Key insight:</span> As technology evolved, certain constraints were removed while others persisted due to educational design choices. Understanding this distinction is crucial for evaluating LLM-based tutoring systems.
-                </p>
+            {/* Constraints Box */}
+            <div className="mt-8 grid grid-cols-2 gap-6">
+              <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-600">
+                <h3 className="text-lg font-medium text-blue-800 mb-3">Technical Constraints</h3>
+                <p className="text-sm text-gray-600 italic mb-3">Limitations due to technology rather than pedagogy</p>
+                <ul className="space-y-2">
+                  <li className="flex items-start">
+                    <div className="flex-shrink-0 mt-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                    <p className="ml-2 text-gray-700">Limited natural language understanding</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="flex-shrink-0 mt-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                    <p className="ml-2 text-gray-700">Rigid knowledge representation formats</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="flex-shrink-0 mt-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                    <p className="ml-2 text-gray-700">Need for pre-programmed interaction paths</p>
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="bg-indigo-50 p-4 rounded-lg border-l-4 border-indigo-600">
+                <h3 className="text-lg font-medium text-indigo-800 mb-3">Pedagogical Constraints</h3>
+                <p className="text-sm text-gray-600 italic mb-3">Deliberate structures that enhance learning</p>
+                <ul className="space-y-2">
+                  <li className="flex items-start">
+                    <div className="flex-shrink-0 mt-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                    <p className="ml-2 text-gray-700">Scaffolding strategies for progressive learning</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="flex-shrink-0 mt-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                    <p className="ml-2 text-gray-700">Guided discovery to promote deeper understanding</p>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="flex-shrink-0 mt-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                    <p className="ml-2 text-gray-700">Structured problem sequencing for optimal challenge</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            {/* Key Insight Box */}
+            <div className="mt-6 p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-600 flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-yellow-600 mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+              <div>
+                <p className="text-gray-800 font-medium">Key research question:</p>
+                <p className="text-gray-800">Which constraints in LLM tutoring reflect deliberate pedagogical choices versus those that are artifacts of their technical architecture?</p>
+                <p className="text-sm text-gray-600 italic mt-1">"Understanding this distinction is crucial for evaluating LLM-based tutoring systems" — Thesis p.17</p>
               </div>
             </div>
           </div>
@@ -143,67 +259,119 @@ const TheorySlideTemplate = ({ currentSubsection = 'evolution', updateCurrentSub
     {
       title: "The QWERTY Phenomenon",
       content: (
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-          <div className="bg-indigo-700 px-6 py-4">
-            <h2 className="text-2xl font-bold text-white">The QWERTY Phenomenon</h2>
-            <p className="text-indigo-100 text-lg">Path dependency in educational technology</p>
+        <div className="bg-white font-sans">
+          {/* Main Title */}
+          <div className="bg-indigo-700 text-white p-4">
+            <h1 className="text-2xl font-bold">The QWERTY Phenomenon</h1>
+            <p className="text-indigo-100">Historical constraints persisting beyond their necessity</p>
           </div>
           
-          <div className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="text-xl font-semibold mb-3 text-indigo-800">Conceptual Framework</h3>
-                <div className="bg-indigo-50 p-4 rounded-lg mb-4">
-                  <p className="text-gray-800">
-                    The QWERTY phenomenon refers to the persistence of design constraints even after the original technical limitations have been resolved.
-                  </p>
-                  <p className="text-sm text-gray-600 mt-2">
-                    Term coined by Seymour Papert (1980) at MIT Media Lab in his seminal work "Mindstorms: Children, Computers, and Powerful Ideas."
-                  </p>
-                </div>
-                
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-medium text-indigo-700 mb-2">The Original QWERTY Example</h4>
-                  <p className="text-sm text-gray-700">
-                    The QWERTY keyboard layout was designed to slow typists down and prevent mechanical typewriter jams. Despite the elimination of this technical constraint with digital keyboards, the inefficient layout persists as the standard.
-                  </p>
-                  <div className="mt-3 text-xs text-gray-500 italic">
-                    Citation: David, P. A. (1985). Clio and the Economics of QWERTY. American Economic Review, 75(2), 332-337.
+          <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Left Column */}
+            <div>
+              <h2 className="text-xl text-indigo-800 font-semibold mb-4">The Concept</h2>
+              
+              <div className="bg-indigo-50 p-4 rounded-lg mb-6">
+                <div className="flex items-start">
+                  <div className="flex-shrink-0">
+                    <div className="bg-indigo-200 rounded-full p-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="ml-4">
+                    <p className="text-gray-800">
+                      <span className="font-medium">Design constraints persist</span> even after technical limitations are resolved
+                    </p>
+                    <p className="text-sm text-gray-500 mt-1">— Seymour Papert (1980)</p>
                   </div>
                 </div>
               </div>
               
-              <div>
-                <h3 className="text-xl font-semibold mb-3 text-indigo-800">QWERTY in Educational Technology</h3>
-                <ul className="space-y-3">
-                  <li className="bg-gray-50 p-3 rounded-lg">
-                    <div className="font-medium text-indigo-700">Conceptual Layer</div>
-                    <p className="text-sm mt-1">Educational software maintaining fixed "domains of knowledge" despite LLMs' ability to fluidly traverse knowledge areas</p>
-                    <div className="mt-2 text-xs bg-indigo-50 p-2 rounded">
-                      Example: Math tutors that strictly separate algebra and geometry despite their interconnections
+              {/* Original QWERTY Example with Keyboard Visualization */}
+              <div className="mb-4">
+                <h3 className="text-lg text-indigo-700 font-medium mb-2">Original Example</h3>
+                
+                <div className="bg-gray-100 p-4 rounded-lg">
+                  <div className="flex justify-center mb-2">
+                    {/* Simplified keyboard visualization - horizontal layout */}
+                    <div className="flex gap-1">
+                      {'QWERTYUIOP'.split('').map(key => (
+                        <div key={key} className="w-8 h-8 bg-white rounded shadow flex items-center justify-center font-medium">{key}</div>
+                      ))}
                     </div>
-                  </li>
-                  <li className="bg-gray-50 p-3 rounded-lg">
-                    <div className="font-medium text-indigo-700">Pedagogical Layer</div>
-                    <p className="text-sm mt-1">Rigid step-by-step problem-solving approaches persisting despite capabilities for more adaptive guidance</p>
-                    <div className="mt-2 text-xs bg-indigo-50 p-2 rounded">
-                      Example: Forcing linear progression through material when non-linear exploration might be more effective
-                    </div>
-                  </li>
-                  <li className="bg-gray-50 p-3 rounded-lg">
-                    <div className="font-medium text-indigo-700">Technical Layer</div>
-                    <p className="text-sm mt-1">Interface designs that maintain rigid interaction patterns from previous technologies</p>
-                    <div className="mt-2 text-xs bg-indigo-50 p-2 rounded">
-                      Example: Multiple-choice assessment formats persisting despite capabilities for natural language understanding
-                    </div>
-                  </li>
-                </ul>
+                  </div>
+                  <p className="text-sm text-gray-600 text-center">
+                    Designed to prevent typewriter jams — persists despite obsolete constraint
+                  </p>
+                </div>
               </div>
             </div>
             
-            <div className="mt-6 bg-indigo-50 p-4 rounded-lg">
+            {/* Right Column */}
+            <div>
+              <h2 className="text-xl text-indigo-800 font-semibold mb-4">In Educational Technology</h2>
+              
+              {/* The three layers as cards with icons */}
+              <div className="space-y-4">
+                {/* Conceptual Layer */}
+                <div className="bg-indigo-50 p-4 rounded-lg flex">
+                  <div className="mr-4 mt-1">
+                    <div className="bg-indigo-100 rounded-full p-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-indigo-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-indigo-800">Conceptual Layer</h3>
+                    <p className="text-sm text-gray-700">Fixed "domains of knowledge" despite LLMs' ability to fluidly traverse topics</p>
+                  </div>
+                </div>
+                
+                {/* Pedagogical Layer */}
+                <div className="bg-indigo-50 p-4 rounded-lg flex">
+                  <div className="mr-4 mt-1">
+                    <div className="bg-indigo-100 rounded-full p-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-indigo-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-indigo-800">Pedagogical Layer</h3>
+                    <p className="text-sm text-gray-700">Rigid step-by-step approaches persisting despite adaptive capabilities</p>
+                  </div>
+                </div>
+                
+                {/* Technical Layer */}
+                <div className="bg-indigo-50 p-4 rounded-lg flex">
+                  <div className="mr-4 mt-1">
+                    <div className="bg-indigo-100 rounded-full p-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-indigo-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-indigo-800">Technical Layer</h3>
+                    <p className="text-sm text-gray-700">Assessment formats restricted to multiple-choice despite natural language capabilities</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Research Question Connection */}
+          <div className="mx-6 mb-6 p-4 bg-indigo-100 rounded-lg border-l-4 border-indigo-600">
+            <div className="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
               <p className="text-gray-800">
-                <span className="font-medium text-indigo-700">Research question implication:</span> Are there QWERTY-like patterns in LLM tutoring systems - constraints that persist despite the newfound capabilities for fluid, natural interaction? This study investigates whether LLMs exhibit fixed patterns beneath their apparent flexibility.
+                <span className="font-medium">Research question:</span> Do LLMs exhibit QWERTY-like patterns—fixed behaviors beneath fluid interaction?
               </p>
             </div>
           </div>
@@ -220,91 +388,153 @@ const TheorySlideTemplate = ({ currentSubsection = 'evolution', updateCurrentSub
           </div>
           
           <div className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="text-xl font-semibold mb-3 text-indigo-800">Conceptual Evolution</h3>
-                <div className="space-y-4">
-                  <div className="bg-indigo-50 p-4 rounded-lg">
-                    <h4 className="font-medium text-indigo-700 mb-2">Tool Paradigm</h4>
-                    <ul className="text-sm space-y-2 text-gray-700">
-                      <li className="flex items-start">
-                        <span className="text-indigo-600 mr-2">•</span>
-                        <span>Student as passive recipient of knowledge</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-indigo-600 mr-2">•</span>
-                        <span>Technology designed to deliver information efficiently</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-indigo-600 mr-2">•</span>
-                        <span>Focus on knowledge transmission</span>
-                      </li>
-                    </ul>
-                    <div className="mt-2 text-xs text-gray-500 italic">
-                      Dominated educational technology from 1970s-1990s, exemplified by Computer-Aided Instruction (CAI) systems
-                    </div>
+            {/* Visual comparison between paradigms */}
+            <div className="flex mb-8">
+              {/* Tool Paradigm Side */}
+              <div className="flex-1 bg-gray-100 rounded-l-lg p-5 relative">
+                <div className="absolute -top-3 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-medium">Tool Paradigm</div>
+                <div className="mt-4 flex justify-center mb-6">
+                  <div className="w-32 h-32 bg-white rounded-lg shadow-md flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+                    </svg>
                   </div>
-                  
-                  <div className="bg-indigo-50 p-4 rounded-lg">
-                    <h4 className="font-medium text-indigo-700 mb-2">Medium Paradigm</h4>
-                    <ul className="text-sm space-y-2 text-gray-700">
-                      <li className="flex items-start">
-                        <span className="text-indigo-600 mr-2">•</span>
-                        <span>Student as active constructor of knowledge</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-indigo-600 mr-2">•</span>
-                        <span>Technology as environment for exploration</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-indigo-600 mr-2">•</span>
-                        <span>Focus on personalized learning experiences</span>
-                      </li>
-                    </ul>
-                    <div className="mt-2 text-xs text-gray-500 italic">
-                      Emerged with constructionist learning approaches, championed by Papert (1980) and others
+                </div>
+                
+                <ul className="space-y-2">
+                  <li className="flex items-start bg-white p-2 rounded shadow-sm">
+                    <div className="flex-shrink-0 mt-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
                     </div>
+                    <p className="ml-2 text-gray-700">Student as passive recipient</p>
+                  </li>
+                  <li className="flex items-start bg-white p-2 rounded shadow-sm">
+                    <div className="flex-shrink-0 mt-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <p className="ml-2 text-gray-700">Delivery of structured information</p>
+                  </li>
+                  <li className="flex items-start bg-white p-2 rounded shadow-sm">
+                    <div className="flex-shrink-0 mt-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <p className="ml-2 text-gray-700">Focus on knowledge transmission</p>
+                  </li>
+                </ul>
+                
+                <div className="mt-4 text-sm text-gray-500 italic text-center px-4">
+                  Dominated educational technology from 1970s-1990s
+                </div>
+              </div>
+              
+              {/* Transition arrow */}
+              <div className="flex items-center justify-center px-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </div>
+              
+              {/* Medium Paradigm Side */}
+              <div className="flex-1 bg-gray-100 rounded-r-lg p-5 relative">
+                <div className="absolute -top-3 left-4 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-medium">Medium Paradigm</div>
+                <div className="mt-4 flex justify-center mb-6">
+                  <div className="w-32 h-32 bg-white rounded-lg shadow-md flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                </div>
+                
+                <ul className="space-y-2">
+                  <li className="flex items-start bg-white p-2 rounded shadow-sm">
+                    <div className="flex-shrink-0 mt-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <p className="ml-2 text-gray-700">Student as active constructor</p>
+                  </li>
+                  <li className="flex items-start bg-white p-2 rounded shadow-sm">
+                    <div className="flex-shrink-0 mt-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <p className="ml-2 text-gray-700">Environment for exploration</p>
+                  </li>
+                  <li className="flex items-start bg-white p-2 rounded shadow-sm">
+                    <div className="flex-shrink-0 mt-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <p className="ml-2 text-gray-700">Focus on personalized experiences</p>
+                  </li>
+                </ul>
+                
+                <div className="mt-4 text-sm text-gray-500 italic text-center px-4">
+                  Emerged with constructivist approaches
+                </div>
+              </div>
+            </div>
+            
+            {/* Theoretical underpinnings */}
+            <div className="grid grid-cols-2 gap-6 mt-4">
+              {/* Piaget Box */}
+              <div className="bg-indigo-50 p-4 rounded-lg">
+                <div className="flex">
+                  <div className="mr-3 flex-shrink-0 bg-indigo-100 rounded-full w-16 h-16 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-indigo-800">Constructivist Learning Theory</h3>
+                    <p className="text-sm text-gray-700 mt-1">
+                      Knowledge is not transmitted but constructed by the learner building on existing mental models
+                    </p>
+                    <p className="text-xs text-gray-500 mt-2 italic">
+                      — Jean Piaget
+                    </p>
                   </div>
                 </div>
               </div>
               
-              <div>
-                <h3 className="text-xl font-semibold mb-3 text-indigo-800">Theoretical Underpinnings</h3>
-                <div className="bg-gray-50 p-4 rounded-lg mb-4">
-                  <h4 className="font-medium text-indigo-700 mb-2">Constructivist Learning Theory</h4>
-                  <p className="text-sm text-gray-700">
-                    Piaget's concept of genetic epistemology: learning as an active process of knowledge construction that builds on existing mental models. Knowledge is not transmitted but constructed by the learner.
-                  </p>
-                  <p className="text-xs text-gray-500 italic mt-2">
-                    Citation: Piaget, J. (1952). The origins of intelligence in children.
-                  </p>
-                </div>
-                
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-medium text-indigo-700 mb-2">Constructionism</h4>
-                  <p className="text-sm text-gray-700">
-                    Papert extended constructivism by emphasizing learning through making. Educational technology should provide a medium for construction rather than a tool for instruction.
-                  </p>
-                  <p className="text-xs text-gray-500 italic mt-2">
-                    Citation: Papert, S., & Harel, I. (1991). Situating constructionism.
-                  </p>
-                  
-                  <div className="mt-3 bg-indigo-50 p-2 rounded">
-                    <p className="text-sm italic">
-                      "The role of the teacher is to create the conditions for invention rather than provide ready-made knowledge." — Seymour Papert
+              {/* Papert Box */}
+              <div className="bg-indigo-50 p-4 rounded-lg">
+                <div className="flex">
+                  <div className="mr-3 flex-shrink-0 bg-indigo-100 rounded-full w-16 h-16 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-indigo-800">Constructionism</h3>
+                    <p className="text-sm text-gray-700 mt-1">
+                      "The role of the teacher is to create the conditions for invention rather than provide ready-made knowledge"
+                    </p>
+                    <p className="text-xs text-gray-500 mt-2 italic">
+                      — Seymour Papert
                     </p>
                   </div>
                 </div>
               </div>
             </div>
             
-            <div className="mt-6 bg-gray-100 p-4 rounded-lg">
+            {/* Research Relevance */}
+            <div className="mt-6 p-4 bg-indigo-50 rounded-lg border-l-4 border-indigo-600">
               <div className="flex items-start">
-                <div className="flex-shrink-0 mt-1">
-                  <div className="w-2 h-2 rounded-full bg-indigo-600"></div>
-                </div>
-                <p className="ml-2 text-gray-800">
-                  <span className="font-medium">Relevance to LLM tutoring:</span> This research examines whether LLMs, with their fluid interfaces, better support the "medium paradigm" by allowing learners to explore knowledge in more personalized, constructivist ways, or if they maintain fixed patterns that limit this potential.
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p className="text-gray-800">
+                  <span className="font-medium">Research question:</span> Do LLMs, with their fluid interfaces, support the "medium paradigm" by enabling personalized, constructivist learning, or do they maintain fixed patterns that limit this potential?
                 </p>
               </div>
             </div>
@@ -322,72 +552,130 @@ const TheorySlideTemplate = ({ currentSubsection = 'evolution', updateCurrentSub
           </div>
           
           <div className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="text-xl font-semibold mb-4 text-indigo-800">Capabilities</h3>
-                <ul className="space-y-3">
-                  <li className="bg-gray-50 p-3 rounded-lg">
-                    <div className="font-medium text-indigo-700">Natural Interaction</div>
-                    <p className="text-sm mt-1">Unprecedented ability to engage in conversational learning without predefined response templates</p>
-                  </li>
-                  <li className="bg-gray-50 p-3 rounded-lg">
-                    <div className="font-medium text-indigo-700">Contextual Adaptation</div>
-                    <p className="text-sm mt-1">Can dynamically adjust explanations based on student vocabulary, prior statements, and apparent comprehension level</p>
-                  </li>
-                  <li className="bg-gray-50 p-3 rounded-lg">
-                    <div className="font-medium text-indigo-700">Knowledge Integration</div>
-                    <p className="text-sm mt-1">Can draw connections across domains and present information in integrated ways rather than strictly siloed topics</p>
-                  </li>
-                  <li className="bg-gray-50 p-3 rounded-lg">
-                    <div className="font-medium text-indigo-700">Example Generation</div>
-                    <p className="text-sm mt-1">Ability to generate novel examples and practice problems tailored to student interests or needs</p>
-                  </li>
-                </ul>
-              </div>
+            {/* Capabilities - Visual Cards */}
+            <div className="mb-8">
+              <h2 className="text-xl text-indigo-800 font-semibold mb-4">Capabilities</h2>
               
-              <div>
-                <h3 className="text-xl font-semibold mb-4 text-indigo-800">Tensions & Limitations</h3>
-                <div className="bg-indigo-50 p-4 rounded-lg mb-4">
-                  <h4 className="font-medium text-indigo-700 mb-2">Fluidity vs. Structure Tension</h4>
-                  <p className="text-sm text-gray-700">
-                    While LLMs appear fluid in their responses, they operate within the structural constraints of their training objectives and data distributions.
-                  </p>
-                  <p className="text-xs text-gray-500 italic mt-2">
-                    Citation: Bommasani et al. (2021). On the Opportunities and Risks of Foundation Models.
-                  </p>
+              <div className="grid grid-cols-4 gap-4">
+                {/* Natural Interaction */}
+                <div className="bg-indigo-50 rounded-lg shadow-sm p-3 flex flex-col items-center text-center">
+                  <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-indigo-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                    </svg>
+                  </div>
+                  <h3 className="font-medium text-indigo-800 mb-1">Natural Interaction</h3>
+                  <p className="text-xs text-gray-600">Conversational learning without templates</p>
                 </div>
                 
-                <div className="bg-indigo-50 p-4 rounded-lg mb-4">
-                  <h4 className="font-medium text-indigo-700 mb-2">Technical Limitations</h4>
-                  <ul className="text-sm space-y-1 text-gray-700">
-                    <li className="flex items-start">
-                      <span className="text-indigo-600 mr-2">→</span>
-                      <span>Lack of true understanding or reasoning</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-indigo-600 mr-2">→</span>
-                      <span>Statistical patterns may not align with pedagogical best practices</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-indigo-600 mr-2">→</span>
-                      <span>Training data biases may reflect suboptimal teaching approaches</span>
-                    </li>
-                  </ul>
+                {/* Contextual Adaptation */}
+                <div className="bg-indigo-50 rounded-lg shadow-sm p-3 flex flex-col items-center text-center">
+                  <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-indigo-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+                    </svg>
+                  </div>
+                  <h3 className="font-medium text-indigo-800 mb-1">Contextual Adaptation</h3>
+                  <p className="text-xs text-gray-600">Adjusts to student comprehension</p>
                 </div>
                 
-                <div className="bg-indigo-50 p-4 rounded-lg">
-                  <h4 className="font-medium text-indigo-700 mb-2">Research Gap</h4>
-                  <p className="text-sm text-gray-700">
-                    Limited research on the emergent teaching patterns and behaviors of LLMs in educational contexts, and how these compare to human tutoring approaches.
-                  </p>
+                {/* Knowledge Integration */}
+                <div className="bg-indigo-50 rounded-lg shadow-sm p-3 flex flex-col items-center text-center">
+                  <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-indigo-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <h3 className="font-medium text-indigo-800 mb-1">Knowledge Integration</h3>
+                  <p className="text-xs text-gray-600">Crosses domain boundaries</p>
+                </div>
+                
+                {/* Example Generation */}
+                <div className="bg-indigo-50 rounded-lg shadow-sm p-3 flex flex-col items-center text-center">
+                  <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-indigo-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                  </div>
+                  <h3 className="font-medium text-indigo-800 mb-1">Example Generation</h3>
+                  <p className="text-xs text-gray-600">Creates tailored practice problems</p>
                 </div>
               </div>
             </div>
             
-            <div className="mt-6 bg-gray-100 p-4 rounded-lg">
-              <p className="text-gray-800">
-                <span className="font-medium">Central thesis:</span> Despite the apparent flexibility of LLM interactions, this research hypothesizes that fixed patterns emerge in their tutoring behaviors that may represent a new form of the QWERTY phenomenon - constraints that arise not from deliberate design choices but from the statistical nature of language model training.
-              </p>
+            {/* Central Tension Visualization */}
+            <div className="mb-8">
+              <h2 className="text-xl text-indigo-800 font-semibold mb-4">Key Tension</h2>
+              
+              <div className="relative h-44 bg-gradient-to-r from-blue-50 to-red-50 rounded-lg p-4">
+                {/* Left side - Fluid */}
+                <div className="absolute left-8 top-4 w-40 text-center">
+                  <div className="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <h3 className="font-bold text-blue-800">Fluid Interface</h3>
+                  <p className="text-xs text-gray-600">Natural, adaptive interactions</p>
+                </div>
+                
+                {/* Right side - Fixed */}
+                <div className="absolute right-8 top-4 w-40 text-center">
+                  <div className="w-16 h-16 mx-auto bg-red-100 rounded-full flex items-center justify-center mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                  </div>
+                  <h3 className="font-bold text-red-800">Fixed Patterns</h3>
+                  <p className="text-xs text-gray-600">Underlying structured behaviors</p>
+                </div>
+                
+                {/* Central tension */}
+                <div className="absolute left-1/2 bottom-4 transform -translate-x-1/2 w-64 text-center">
+                  <div className="bg-white px-4 py-2 rounded-md shadow-md border-2 border-indigo-300">
+                    <h4 className="font-medium text-indigo-800">Research Question</h4>
+                    <p className="text-sm text-gray-700">Do fluid interfaces mask fixed behavioral patterns?</p>
+                  </div>
+                  
+                  {/* Arrows */}
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 mx-auto -mt-1 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            
+            {/* Limitations - Visual Display */}
+            <div className="grid grid-cols-2 gap-4 mb-8">
+              <div className="bg-gray-50 p-3 rounded-lg shadow-sm border-l-4 border-gray-400 flex flex-col items-center text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-gray-600 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+                <h3 className="font-medium text-gray-800 mb-1">Training Data Biases</h3>
+                <p className="text-xs text-gray-600">May reflect suboptimal teaching</p>
+              </div>
+              
+              <div className="bg-gray-50 p-3 rounded-lg shadow-sm border-l-4 border-gray-400 flex flex-col items-center text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-gray-600 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h3 className="font-medium text-gray-800 mb-1">Research Gap</h3>
+                <p className="text-xs text-gray-600">Limited studies on LLM teaching patterns</p>
+              </div>
+            </div>
+            
+            {/* Central Thesis - Visual Focus */}
+            <div className="p-4 bg-indigo-100 rounded-lg border-2 border-indigo-300 shadow-md relative">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-indigo-700 text-white px-4 py-1 rounded-full text-sm font-medium">
+                Research Hypothesis
+              </div>
+              <div className="pt-2 flex justify-center">
+                <div className="w-3/4 text-center">
+                  <p className="text-indigo-900 font-medium">
+                    Despite LLMs' fluid interfaces, this research hypothesizes that their tutoring behaviors exhibit fixed patterns—a new form of the QWERTY phenomenon
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

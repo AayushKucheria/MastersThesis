@@ -57,7 +57,7 @@ const MethodologySlideTemplate = ({ currentSubsection = 'dataset', updateCurrent
           <div className="p-6">
             <div className="grid grid-cols-2 gap-6">
               <div>
-                <h3 className="text-xl font-semibold mb-3 text-green-800">Dataset Characteristics</h3>
+                <h3 className="text-xl font-semibold mb-3 text-green-800">Key Characteristics</h3>
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-start">
                     <span className="text-green-600 mr-2">•</span>
@@ -65,43 +65,41 @@ const MethodologySlideTemplate = ({ currentSubsection = 'dataset', updateCurrent
                   </li>
                   <li className="flex items-start">
                     <span className="text-green-600 mr-2">•</span>
-                    <span><span className="font-medium">2,880</span> tutor responses from <span className="font-medium">209</span> tutors</span>
+                    <span><span className="font-medium">Multiple</span> valid tutor responses per interaction</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-green-600 mr-2">•</span>
-                    <span>Focus on Italian preposition learning for English speakers</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-600 mr-2">•</span>
-                    <span>Each student interaction has <span className="font-medium">multiple</span> valid tutor responses</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-600 mr-2">•</span>
-                    <span>Published by Stasaski et al. (2020) at ACL Conference</span>
+                    <span>Focuses on Italian preposition learning</span>
                   </li>
                 </ul>
               </div>
               
               <div className="bg-gray-50 p-4 rounded-lg">
-                <h3 className="text-xl font-semibold mb-3 text-green-800">Interaction Example</h3>
+                <h3 className="text-xl font-semibold mb-3 text-green-800">Sample Interaction</h3>
                 <div className="space-y-3">
                   <div className="bg-gray-100 p-3 rounded-lg">
-                    <div className="text-xs text-gray-500 mb-1">Exercise Context:</div>
-                    <p className="text-gray-800">Translate: "I'm going to the store" (Focus on correct preposition)</p>
+                    <div className="text-sm font-medium mb-1">Exercise: Translate "I'm going to the store"</div>
                   </div>
                   
                   <div className="bg-blue-50 p-3 rounded-lg">
-                    <div className="text-xs text-gray-500 mb-1">Student:</div>
+                    <div className="text-xs text-gray-500 mb-1">STUDENT:</div>
                     <p className="text-gray-800">"Vado a il negozio"</p>
                   </div>
                   
                   <div className="bg-green-50 p-3 rounded-lg">
-                    <div className="text-xs text-gray-500 mb-1">Human Tutor Response:</div>
+                    <div className="text-xs text-gray-500 mb-1">TUTOR A:</div>
                     <p className="text-gray-800">You're close! Remember that 'a' + 'il' combine to form 'al'.</p>
+                    <div className="text-xs text-gray-500 mt-1">Hint + Correction</div>
+                  </div>
+                  
+                  <div className="bg-green-50 p-3 rounded-lg">
+                    <div className="text-xs text-gray-500 mb-1">TUTOR B:</div>
+                    <p className="text-gray-800">Good try! Can you remember what happens when 'a' and 'il' come together?</p>
+                    <div className="text-xs text-gray-500 mt-1">Question + Hint</div>
                   </div>
                   
                   <div className="text-xs text-gray-500 italic">
-                    Note: This simplified example shows the structure of interactions in the dataset.
+                    Action labels illustrate how different tutors approach the same student input.
                   </div>
                 </div>
               </div>
@@ -109,7 +107,7 @@ const MethodologySlideTemplate = ({ currentSubsection = 'dataset', updateCurrent
             
             <div className="mt-6 bg-green-50 p-4 rounded-lg">
               <p className="text-gray-800">
-                <span className="font-medium text-green-700">Dataset selection rationale:</span> The CIMA dataset provides a controlled environment with well-structured tutoring interactions and multiple human tutor responses per student action, making it ideal for comparative analysis with LLM-generated tutoring.
+                <span className="font-medium text-green-700">Dataset selection rationale:</span> Multiple valid responses per student interaction provides an ideal baseline for comparing human and AI tutoring patterns.
               </p>
             </div>
           </div>
@@ -131,47 +129,44 @@ const MethodologySlideTemplate = ({ currentSubsection = 'dataset', updateCurrent
                 <h3 className="text-xl font-semibold mb-3 text-green-800">Selected Models</h3>
                 <ul className="space-y-3 text-gray-700">
                   <li className="bg-gray-50 p-3 rounded-lg">
-                    <div className="font-medium text-green-700">GPT-4</div>
-                    <p className="text-sm mt-1">OpenAI's most advanced model (gpt-4-0314), instruction-tuned with RLHF</p>
+                    <div className="font-medium text-green-700">GPT-4o</div>
+                    <p className="text-sm mt-1">OpenAI's instruction-tuned model</p>
                   </li>
                   <li className="bg-gray-50 p-3 rounded-lg">
-                    <div className="font-medium text-green-700">Gemini Pro</div>
-                    <p className="text-sm mt-1">Google's multimodal model, instruction-tuned with comparable capabilities</p>
+                    <div className="font-medium text-green-700">Gemini Pro 1.5</div>
+                    <p className="text-sm mt-1">Google's instruction-tuned model</p>
                   </li>
                   <li className="bg-gray-50 p-3 rounded-lg">
-                    <div className="font-medium text-green-700">LLaMA 405b</div>
-                    <p className="text-sm mt-1">Meta's 405B parameter model with instruction tuning</p>
+                    <div className="font-medium text-green-700">LLaMa 3.1 405B</div>
+                    <p className="text-sm mt-1">Meta's instruction-tuned model</p>
                   </li>
                 </ul>
-                
-                <div className="mt-4 bg-yellow-50 p-3 rounded-lg text-sm">
-                  <span className="font-medium text-yellow-700">Selection rationale:</span> All models are instruction-tuned to isolate differences in interaction patterns rather than basic conversational ability.
-                </div>
               </div>
               
               <div>
-                <h3 className="text-xl font-semibold mb-3 text-green-800">Implementation Approach</h3>
+                <h3 className="text-xl font-semibold mb-3 text-green-800">Consistent Prompting Approach</h3>
                 <div className="space-y-3">
-                  <div className="bg-gray-50 p-3 rounded-lg">
-                    <div className="font-medium text-green-700">Consistent Prompting Structure</div>
-                    <p className="text-sm mt-1">Models were provided with identical context about:</p>
-                    <ul className="list-disc pl-5 text-sm mt-1">
-                      <li>The tutoring scenario</li>
-                      <li>Relevant Italian grammar rules</li>
-                      <li>Student's current state in the exercise</li>
-                    </ul>
+                  <div className="bg-gray-50 p-3 rounded-lg font-mono text-sm">
+                    <p>// Sample prompt structure</p>
+                    <p className="mt-1">You are a language tutor teaching Italian.</p>
+                    <p className="mt-1">Available actions:</p>
+                    <p>- Question - Hint</p>
+                    <p>- Correction - Confirmation</p>
+                    <p className="mt-2">// Context</p>
+                    <p>Target phrase (IT):</p>
+                    <p>{"{target_phrase}"}</p>
+                    <p>Grammar rules:</p>
+                    <p>{"{grammar_rules}"}</p>
+                    <p className="mt-2">// Student interaction</p>
+                    <p>Conversation history:</p>
+                    <p>{"{conversation_history}"}</p>
                   </div>
                   
                   <div className="bg-gray-50 p-3 rounded-lg">
-                    <div className="font-medium text-green-700">Response Format</div>
-                    <p className="text-sm mt-1">All models generated responses in the same structured format as human tutors in the CIMA dataset, allowing for direct comparison.</p>
-                  </div>
-                  
-                  <div className="bg-gray-50 p-3 rounded-lg">
-                    <div className="font-medium text-green-700">Example Prompt Structure</div>
-                    <p className="text-xs mt-1 bg-gray-100 p-2 rounded">
-                      You are a tutor helping a student learn Italian prepositions. The student is trying to translate "<i>I'm going to the store</i>" and has written "<i>Vado a il negozio</i>". Provide a helpful tutoring response.
+                    <p className="text-sm italic">
+                      "To ensure consistent comparison with human tutors, we developed a structured prompting system that provides each model with equivalent context to what human tutors received in the original dataset."
                     </p>
+                    <p className="text-xs text-right mt-1">— Master's Thesis, p.36</p>
                   </div>
                 </div>
               </div>
@@ -179,7 +174,7 @@ const MethodologySlideTemplate = ({ currentSubsection = 'dataset', updateCurrent
             
             <div className="mt-6 bg-green-50 p-4 rounded-lg">
               <p className="text-gray-800">
-                <span className="font-medium text-green-700">Key methodological consideration:</span> By using the same prompt structure across all models and maintaining consistency with the human tutoring context, this approach enables fair comparison of natural interaction patterns.
+                <span className="font-medium text-green-700">Key methodological consideration:</span> All models are instruction-tuned to isolate differences in tutoring behavior rather than basic conversational ability. Using the same prompt structure across models ensures fair comparison of natural interaction patterns.
               </p>
             </div>
           </div>
@@ -196,6 +191,13 @@ const MethodologySlideTemplate = ({ currentSubsection = 'dataset', updateCurrent
           </div>
           
           <div className="p-6">
+            <div className="mb-3 bg-gray-50 p-3 rounded-lg">
+              <p className="text-gray-700 italic text-sm">
+                "Our analysis framework enables measurement of several key dimensions of tutoring behavior, focusing on action distributions, response complexity, and conditional patterns."
+              </p>
+              <p className="text-xs text-right mt-1">— Master's Thesis, p.38</p>
+            </div>
+            
             <div className="grid grid-cols-3 gap-4">
               <div className="col-span-3 md:col-span-1 bg-gray-50 p-4 rounded-lg">
                 <h3 className="text-lg font-semibold mb-3 text-green-800">Action Distribution</h3>
@@ -211,23 +213,15 @@ const MethodologySlideTemplate = ({ currentSubsection = 'dataset', updateCurrent
                   </li>
                   <li className="flex items-start">
                     <span className="text-green-600 mr-2">•</span>
-                    <span>Affirmations</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-600 mr-2">•</span>
-                    <span>Explanations</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-600 mr-2">•</span>
-                    <span>Contextual information</span>
+                    <span>Corrections/Confirmations</span>
                   </li>
                 </ul>
-                <div className="mt-3 text-xs text-gray-500 italic">Compared across human and AI tutors to identify baseline preferences.</div>
+                <div className="mt-3 text-xs text-gray-500 italic">Identifies baseline preferences in tutoring strategies.</div>
               </div>
               
               <div className="col-span-3 md:col-span-1 bg-gray-50 p-4 rounded-lg">
                 <h3 className="text-lg font-semibold mb-3 text-green-800">Response Complexity</h3>
-                <p className="text-sm text-gray-700 mb-3">Analysis of multi-action patterns:</p>
+                <p className="text-sm text-gray-700 mb-3">Multi-action pattern analysis:</p>
                 <ul className="text-sm space-y-2 text-gray-700">
                   <li className="flex items-start">
                     <span className="text-green-600 mr-2">•</span>
@@ -235,46 +229,66 @@ const MethodologySlideTemplate = ({ currentSubsection = 'dataset', updateCurrent
                   </li>
                   <li className="flex items-start">
                     <span className="text-green-600 mr-2">•</span>
-                    <span>Response length and structure</span>
+                    <span>Response length patterns</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-green-600 mr-2">•</span>
                     <span>Common action combinations</span>
                   </li>
                 </ul>
-                <div className="mt-3 text-xs text-gray-500 italic">Investigates differences in communication complexity between human and AI tutors.</div>
+                <div className="mt-3 text-xs text-gray-500 italic">Reveals differences in communication patterns.</div>
               </div>
               
               <div className="col-span-3 md:col-span-1 bg-gray-50 p-4 rounded-lg">
                 <h3 className="text-lg font-semibold mb-3 text-green-800">Interaction Flow</h3>
-                <p className="text-sm text-gray-700 mb-3">Conditional response analysis:</p>
-                <ul className="text-sm space-y-2 text-gray-700">
-                  <li className="flex items-start">
-                    <span className="text-green-600 mr-2">•</span>
-                    <span>Student question → Tutor action</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-600 mr-2">•</span>
-                    <span>Student guess → Tutor action</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-600 mr-2">•</span>
-                    <span>Student confusion → Tutor action</span>
-                  </li>
-                </ul>
+                <p className="text-sm text-gray-700 mb-2">Conditional response analysis:</p>
+                
+                <div className="flex justify-center mb-3">
+                  <div className="bg-blue-50 px-3 py-2 rounded-md">
+                    <p className="text-sm font-medium text-center text-blue-800">Student Actions</p>
+                  </div>
+                  <div className="mx-2 flex items-center">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13 7L18 12L13 17" stroke="#16A34A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M6 12H18" stroke="#16A34A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <div className="bg-green-50 px-3 py-2 rounded-md">
+                    <p className="text-sm font-medium text-center text-green-800">Tutor Responses</p>
+                  </div>
+                </div>
+                
+                <div className="space-y-2 text-sm text-gray-700 px-1">
+                  <div className="flex items-center justify-between">
+                    <span className="bg-blue-50 text-blue-800 px-2 py-1 rounded">Guess</span>
+                    <span className="text-green-600">→</span>
+                    <span className="bg-green-50 text-green-800 px-2 py-1 rounded">Pattern A</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="bg-blue-50 text-blue-800 px-2 py-1 rounded">Question</span>
+                    <span className="text-green-600">→</span>
+                    <span className="bg-green-50 text-green-800 px-2 py-1 rounded">Pattern B</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="bg-blue-50 text-blue-800 px-2 py-1 rounded">Affirmation</span>
+                    <span className="text-green-600">→</span>
+                    <span className="bg-green-50 text-green-800 px-2 py-1 rounded">Pattern C</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="bg-blue-50 text-blue-800 px-2 py-1 rounded">Other</span>
+                    <span className="text-green-600">→</span>
+                    <span className="bg-green-50 text-green-800 px-2 py-1 rounded">Pattern D</span>
+                  </div>
+                </div>
+                
                 <div className="mt-3 text-xs text-gray-500 italic">Examines how tutors adapt their strategies to different student behaviors.</div>
               </div>
             </div>
             
             <div className="mt-6 bg-green-50 p-4 rounded-lg">
-              <div className="flex items-start">
-                <div className="flex-shrink-0 mt-1">
-                  <div className="w-2 h-2 rounded-full bg-green-600"></div>
-                </div>
-                <p className="ml-2 text-gray-800">
-                  <span className="font-medium text-green-700">Analytical approach:</span> This multi-dimensional framework allows for systematic comparison of interaction patterns across different tutors, revealing both surface-level similarities and deeper structural differences.
-                </p>
-              </div>
+              <p className="text-gray-800">
+                <span className="font-medium text-green-700">Population-level analysis:</span> Our approach examines aggregate patterns rather than individual responses, allowing for more robust comparison of human and AI tutoring behaviors.
+              </p>
             </div>
           </div>
         </div>
