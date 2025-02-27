@@ -195,7 +195,7 @@ const ConclusionSlideTemplate = ({ currentSubsection = 'findings', updateCurrent
                     <div>
                       <h4 className="font-medium text-gray-800 text-sm">Leverage Unique Patterns</h4>
                       <p className="text-xs text-gray-600 mt-1">
-                        Effective ITS will come from understanding and leveraging these systems' characteristic patterns
+                        Effective ITS will come from understanding and leveraging these systems&apos; characteristic patterns
                       </p>
                     </div>
                   </div>
@@ -211,7 +211,7 @@ const ConclusionSlideTemplate = ({ currentSubsection = 'findings', updateCurrent
                     <div>
                       <h4 className="font-medium text-gray-800 text-sm">Complementary Approach</h4>
                       <p className="text-xs text-gray-600 mt-1">
-                        A future where AI tutors don't simply replicate human teaching strategies but complement them with distinctive interaction patterns
+                        A future where AI tutors don&apos;t simply replicate human teaching strategies but complement them with distinctive interaction patterns
                       </p>
                     </div>
                   </div>
