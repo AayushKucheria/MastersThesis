@@ -83,18 +83,18 @@ const MethodologySlideTemplate = ({ currentSubsection = 'dataset', updateCurrent
                   
                   <div className="bg-blue-50 p-3 rounded-lg">
                     <div className="text-xs text-gray-500 mb-1">STUDENT:</div>
-                    <p className="text-gray-800">"Vado a il negozio"</p>
+                    <p className="text-gray-800">&quot;Vado a il negozio&quot;</p>
                   </div>
                   
                   <div className="bg-green-50 p-3 rounded-lg">
                     <div className="text-xs text-gray-500 mb-1">TUTOR A:</div>
-                    <p className="text-gray-800">You're close! Remember that 'a' + 'il' combine to form 'al'.</p>
+                    <p className="text-gray-800">You&apos;re close! Remember that &apos;a&apos; + &apos;il&apos; combine to form &apos;al&apos;.</p>
                     <div className="text-xs text-gray-500 mt-1">Hint + Correction</div>
                   </div>
                   
                   <div className="bg-green-50 p-3 rounded-lg">
                     <div className="text-xs text-gray-500 mb-1">TUTOR B:</div>
-                    <p className="text-gray-800">Good try! Can you remember what happens when 'a' and 'il' come together?</p>
+                    <p className="text-gray-800">Good try! Can you remember what happens when &apos;a&apos; and &apos;il&apos; come together?</p>
                     <div className="text-xs text-gray-500 mt-1">Question + Hint</div>
                   </div>
                   
@@ -130,15 +130,15 @@ const MethodologySlideTemplate = ({ currentSubsection = 'dataset', updateCurrent
                 <ul className="space-y-3 text-gray-700">
                   <li className="bg-gray-50 p-3 rounded-lg">
                     <div className="font-medium text-green-700">GPT-4o</div>
-                    <p className="text-sm mt-1">OpenAI's instruction-tuned model</p>
+                    <p className="text-sm mt-1">OpenAI&apos;s instruction-tuned model</p>
                   </li>
                   <li className="bg-gray-50 p-3 rounded-lg">
                     <div className="font-medium text-green-700">Gemini Pro 1.5</div>
-                    <p className="text-sm mt-1">Google's instruction-tuned model</p>
+                    <p className="text-sm mt-1">Google&apos;s instruction-tuned model</p>
                   </li>
                   <li className="bg-gray-50 p-3 rounded-lg">
                     <div className="font-medium text-green-700">LLaMa 3.1 405B</div>
-                    <p className="text-sm mt-1">Meta's instruction-tuned model</p>
+                    <p className="text-sm mt-1">Meta&apos;s instruction-tuned model</p>
                   </li>
                 </ul>
               </div>
@@ -147,26 +147,26 @@ const MethodologySlideTemplate = ({ currentSubsection = 'dataset', updateCurrent
                 <h3 className="text-xl font-semibold mb-3 text-green-800">Consistent Prompting Approach</h3>
                 <div className="space-y-3">
                   <div className="bg-gray-50 p-3 rounded-lg font-mono text-sm">
-                    <p>// Sample prompt structure</p>
+                    <p>{/* Sample prompt structure */}</p>
                     <p className="mt-1">You are a language tutor teaching Italian.</p>
                     <p className="mt-1">Available actions:</p>
                     <p>- Question - Hint</p>
                     <p>- Correction - Confirmation</p>
-                    <p className="mt-2">// Context</p>
+                    <p className="mt-2">{/* Context */}</p>
                     <p>Target phrase (IT):</p>
                     <p>{"{target_phrase}"}</p>
                     <p>Grammar rules:</p>
                     <p>{"{grammar_rules}"}</p>
-                    <p className="mt-2">// Student interaction</p>
+                    <p className="mt-2">{/* Student interaction */}</p>
                     <p>Conversation history:</p>
                     <p>{"{conversation_history}"}</p>
                   </div>
                   
                   <div className="bg-gray-50 p-3 rounded-lg">
                     <p className="text-sm italic">
-                      "To ensure consistent comparison with human tutors, we developed a structured prompting system that provides each model with equivalent context to what human tutors received in the original dataset."
+                      &quot;To ensure consistent comparison with human tutors, we developed a structured prompting system that provides each model with equivalent context to what human tutors received in the original dataset.&quot;
                     </p>
-                    <p className="text-xs text-right mt-1">— Master's Thesis, p.36</p>
+                    <p className="text-xs text-right mt-1">— Master&apos;s Thesis, p.36</p>
                   </div>
                 </div>
               </div>
@@ -193,9 +193,9 @@ const MethodologySlideTemplate = ({ currentSubsection = 'dataset', updateCurrent
           <div className="p-6">
             <div className="mb-3 bg-gray-50 p-3 rounded-lg">
               <p className="text-gray-700 italic text-sm">
-                "Our analysis framework enables measurement of several key dimensions of tutoring behavior, focusing on action distributions, response complexity, and conditional patterns."
+                &quot;Our analysis framework enables measurement of several key dimensions of tutoring behavior, focusing on action distributions, response complexity, and conditional patterns.&quot;
               </p>
-              <p className="text-xs text-right mt-1">— Master's Thesis, p.38</p>
+              <p className="text-xs text-right mt-1">— Master&apos;s Thesis, p.38</p>
             </div>
             
             <div className="grid grid-cols-3 gap-4">

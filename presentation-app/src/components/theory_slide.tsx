@@ -249,7 +249,7 @@ const TheorySlideTemplate = ({ currentSubsection = 'evolution', updateCurrentSub
               <div>
                 <p className="text-gray-800 font-medium">Key research question:</p>
                 <p className="text-gray-800">Which constraints in LLM tutoring reflect deliberate pedagogical choices versus those that are artifacts of their technical architecture?</p>
-                <p className="text-sm text-gray-600 italic mt-1">"Understanding this distinction is crucial for evaluating LLM-based tutoring systems" — Thesis p.17</p>
+                <p className="text-sm text-gray-600 italic mt-1">&quot;Understanding this distinction is crucial for evaluating LLM-based tutoring systems&quot; — Thesis p.17</p>
               </div>
             </div>
           </div>
@@ -326,7 +326,7 @@ const TheorySlideTemplate = ({ currentSubsection = 'evolution', updateCurrentSub
                   </div>
                   <div>
                     <h3 className="font-medium text-indigo-800">Conceptual Layer</h3>
-                    <p className="text-sm text-gray-700">Fixed "domains of knowledge" despite LLMs' ability to fluidly traverse topics</p>
+                    <p className="text-sm text-gray-700">Fixed &quot;domains of knowledge&quot; despite LLMs&apos; ability to fluidly traverse topics</p>
                   </div>
                 </div>
                 
@@ -517,7 +517,7 @@ const TheorySlideTemplate = ({ currentSubsection = 'evolution', updateCurrentSub
                   <div>
                     <h3 className="font-medium text-indigo-800">Constructionism</h3>
                     <p className="text-sm text-gray-700 mt-1">
-                      "The role of the teacher is to create the conditions for invention rather than provide ready-made knowledge"
+                      &quot;The role of the teacher is to create the conditions for invention rather than provide ready-made knowledge&quot;
                     </p>
                     <p className="text-xs text-gray-500 mt-2 italic">
                       — Seymour Papert
@@ -534,7 +534,7 @@ const TheorySlideTemplate = ({ currentSubsection = 'evolution', updateCurrentSub
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <p className="text-gray-800">
-                  <span className="font-medium">Research question:</span> Do LLMs, with their fluid interfaces, support the "medium paradigm" by enabling personalized, constructivist learning, or do they maintain fixed patterns that limit this potential?
+                  <span className="font-medium">Research question:</span> Do LLMs, with their fluid interfaces, support the &quot;medium paradigm&quot; by enabling personalized, constructivist learning, or do they maintain fixed patterns that limit this potential?
                 </p>
               </div>
             </div>
@@ -672,7 +672,7 @@ const TheorySlideTemplate = ({ currentSubsection = 'evolution', updateCurrentSub
               <div className="pt-2 flex justify-center">
                 <div className="w-3/4 text-center">
                   <p className="text-indigo-900 font-medium">
-                    Despite LLMs' fluid interfaces, this research hypothesizes that their tutoring behaviors exhibit fixed patterns—a new form of the QWERTY phenomenon
+                    Despite LLMs&apos; fluid interfaces, this research hypothesizes that their tutoring behaviors exhibit fixed patterns—a new form of the QWERTY phenomenon
                   </p>
                 </div>
               </div>

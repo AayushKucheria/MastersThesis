@@ -49,7 +49,7 @@ const TitleSlideTemplate = () => {
           {/* Author and affiliations */}
           <div className="mt-6 mb-4">
             <h3 className="text-xl font-semibold text-gray-800">Aayush Kucheria</h3>
-            <p className="text-gray-600 mt-1">Master's Thesis | 2024</p>
+            <p className="text-gray-600 mt-1">Master&apos;s Thesis | 2024</p>
             <p className="text-gray-600">Aalto University, Finland</p>
           </div>
           
