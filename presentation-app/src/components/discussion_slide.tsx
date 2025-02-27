@@ -248,12 +248,7 @@ const DiscussionSlideTemplate = ({ currentSubsection = 'theoretical', updateCurr
           </div>
           
           <div className="p-6">
-            {/* Core assertion in a clean, simple style */}
-            <div className="mb-5 bg-gray-50 p-3 rounded-lg border-l-4 border-teal-500">
-              <p className="text-gray-700 italic text-sm">
-                Rather than viewing differences as limitations, they represent opportunities for new hybrid approaches
-              </p>
-            </div>
+            
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* LIMITATIONS COLUMN - Simplified */}
