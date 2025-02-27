@@ -80,7 +80,7 @@ const ResultsSlideTemplate = ({ currentSubsection = 'distribution', updateCurren
                       </li>
                       <li className="flex items-start">
                         <span className="text-purple-600 mr-2 mt-1">•</span>
-                        <span className="text-gray-700">LLaMA's profile most resembles human tutors</span>
+                        <span className="text-gray-700">LLaMA&apos;s profile most resembles human tutors</span>
                       </li>
                     </ul>
                   </div>
@@ -224,7 +224,7 @@ const ResultsSlideTemplate = ({ currentSubsection = 'distribution', updateCurren
                     <h4 className="font-medium text-purple-800 mb-2">Teaching Philosophy</h4>
                     <p className="text-gray-700 text-sm">
                       Human preference for single actions suggests understanding of <span className="font-medium">cognitive load theory</span>, 
-                      while AI systems' complex responses imply a model of teaching as <span className="font-medium">information delivery</span> 
+                      while AI systems&apos; complex responses imply a model of teaching as <span className="font-medium">information delivery</span> 
                       rather than guided discovery.
                     </p>
                   </div>
@@ -571,7 +571,7 @@ const ResultsSlideTemplate = ({ currentSubsection = 'distribution', updateCurren
               
               <div className="mt-6 p-4 bg-gray-100 rounded-lg">
                 <p className="text-gray-700">
-                  <span className="font-medium">Key insight:</span> While language models can engage in fluid, natural conversation, they exhibit characteristic response patterns distinct from human teaching strategies. These differences raise important questions about whether such variations reflect meaningful pedagogical choices or are artifacts of the models' underlying architectures and training approaches.
+                  <span className="font-medium">Key insight:</span> While language models can engage in fluid, natural conversation, they exhibit characteristic response patterns distinct from human teaching strategies. These differences raise important questions about whether such variations reflect meaningful pedagogical choices or are artifacts of the models&apos; underlying architectures and training approaches.
                 </p>
               </div>
               
