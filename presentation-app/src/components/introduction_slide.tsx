@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 // Define the props interface for the component
 interface IntroductionSlideProps {
@@ -10,18 +10,18 @@ interface IntroductionSlideProps {
 
 const IntroductionSlideTemplate = ({ currentSubsection = 'focus', updateCurrentSubsection }: IntroductionSlideProps) => {
   // Map subsection IDs to slide indices
-  const subsectionMap = {
+  const subsectionMap = useMemo(() => ({
     'focus': 0,
     'questions': 1,
     'roadmap': 2
-  };
+  }), []);
   
   // Reverse map to get subsection from index
-  const indexToSubsectionMap = {
+  const indexToSubsectionMap = useMemo(() => ({
     0: 'focus',
     1: 'questions',
     2: 'roadmap'
-  };
+  }), []);
   
   // Set the current slide based on the subsection prop
   const [currentSlide, setCurrentSlide] = useState(subsectionMap[currentSubsection as keyof typeof subsectionMap] || 0);

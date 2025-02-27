@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import TitleSlideTemplate from "@/components/title_slide";
 import IntroductionSlideTemplate from "@/components/introduction_slide";
 import TheorySlideTemplate from "@/components/theory_slide";
@@ -32,7 +32,7 @@ export default function Home() {
   const slideOrder: SlideSection[] = ['title', 'introduction', 'theory', 'methodology', 'results', 'discussion', 'conclusion'];
   
   // Function to navigate to the next slide or subsection
-  const goToNextSlide = () => {
+  const goToNextSlide = useCallback(() => {
     const currentSectionIndex = slideOrder.indexOf(activeSlide);
     const currentSection = presentationStructure[activeSlide];
     const currentSubsectionIndex = currentSection.subsections.indexOf(activeSubsection);
@@ -47,10 +47,10 @@ export default function Home() {
       setActiveSlide(nextSection);
       setActiveSubsection(presentationStructure[nextSection].subsections[0]);
     }
-  };
+  }, [activeSlide, activeSubsection, slideOrder]);
   
   // Function to navigate to the previous slide or subsection
-  const goToPreviousSlide = () => {
+  const goToPreviousSlide = useCallback(() => {
     const currentSectionIndex = slideOrder.indexOf(activeSlide);
     const currentSection = presentationStructure[activeSlide];
     const currentSubsectionIndex = currentSection.subsections.indexOf(activeSubsection);
@@ -67,7 +67,7 @@ export default function Home() {
       const prevSubsections = presentationStructure[prevSection].subsections;
       setActiveSubsection(prevSubsections[prevSubsections.length - 1]);
     }
-  };
+  }, [activeSlide, activeSubsection, slideOrder]);
   
   // Function to directly navigate to a specific section
   const goToSection = (section: SlideSection) => {

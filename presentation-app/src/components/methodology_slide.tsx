@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 // Define the props interface for the component
 interface MethodologySlideProps {
@@ -10,18 +10,18 @@ interface MethodologySlideProps {
 
 const MethodologySlideTemplate = ({ currentSubsection = 'dataset', updateCurrentSubsection }: MethodologySlideProps) => {
   // Map subsection IDs to slide indices
-  const subsectionMap = {
+  const subsectionMap = useMemo(() => ({
     'dataset': 0,
     'implementation': 1,
     'framework': 2
-  };
+  }), []);
   
   // Reverse map to get subsection from index
-  const indexToSubsectionMap = {
+  const indexToSubsectionMap = useMemo(() => ({
     0: 'dataset',
     1: 'implementation',
     2: 'framework'
-  };
+  }), []);
   
   // Set the current slide based on the subsection prop
   const [currentSlide, setCurrentSlide] = useState(subsectionMap[currentSubsection as keyof typeof subsectionMap] || 0);

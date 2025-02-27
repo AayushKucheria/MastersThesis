@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 // Define the props interface for the component
 interface DiscussionSlideProps {
@@ -10,18 +10,18 @@ interface DiscussionSlideProps {
 
 const DiscussionSlideTemplate = ({ currentSubsection = 'theoretical', updateCurrentSubsection }: DiscussionSlideProps) => {
   // Map subsection IDs to slide indices
-  const subsectionMap = {
+  const subsectionMap = useMemo(() => ({
     'theoretical': 0,
     'practical': 1,
     'limitations': 2
-  };
+  }), []);
   
   // Reverse map to get subsection from index
-  const indexToSubsectionMap = {
+  const indexToSubsectionMap = useMemo(() => ({
     0: 'theoretical',
     1: 'practical',
     2: 'limitations'
-  };
+  }), []);
   
   // Set the current slide based on the subsection prop
   const [currentSlide, setCurrentSlide] = useState(subsectionMap[currentSubsection as keyof typeof subsectionMap] || 0);
